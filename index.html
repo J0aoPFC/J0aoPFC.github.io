@@ -107,14 +107,18 @@
     .hero > *:nth-child(1){animation-delay:.1s} .hero > *:nth-child(2){animation-delay:.2s}
     .hero > *:nth-child(3){animation-delay:.3s} .hero > *:nth-child(4){animation-delay:.4s}
 
-    @media(max-width:768px){ .about-grid{grid-template-columns:1fr} }
+    @media(max-width:768px){ 
+      .about-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+      nav { flex-direction: column; gap: 1rem; }
+    }
   </style>
 </head>
 <body>
 
 <nav>
   <div class="logo">J0aoPFC<span>.github.io</span></div>
-  <a href="https://github.com/J0aoPFC" target="_blank">GitHub →</a>
+  <a href="https://github.com/J0aoPFC" target="_blank" rel="noopener noreferrer">GitHub →</a>
 </nav>
 
 <section class="hero">
@@ -122,8 +126,8 @@
   <h1>João Pedro<br/><span class="hl">Fialho</span></h1>
   <p>Portfólio de projetos e exercícios em Java, versionados com Git e organizados no GitHub. Cada arquivo representa uma habilidade desenvolvida.</p>
   <div class="btn-group">
-    <a href="https://github.com/J0aoPFC" class="btn btn-primary" target="_blank">Ver no GitHub</a>
-    <a href="https://linkedin.com/in/joaopedrofialho" class="btn btn-ghost" target="_blank">LinkedIn</a>
+    <a href="https://github.com/J0aoPFC" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+    <a href="https://linkedin.com/in/joaopedrofialho" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">LinkedIn</a>
   </div>
 </section>
 
@@ -132,55 +136,55 @@
   <h2 class="sec-title">Projetos Java</h2>
   <div class="files-grid">
 
-    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank">
+    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank" rel="noopener noreferrer">
       <div class="file-icon">☕</div>
       <div><div class="file-name">CalculaDobro</div><div class="file-ext">.java</div></div>
       <span class="file-link">ver →</span>
     </a>
 
-    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank">
+    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank" rel="noopener noreferrer">
       <div class="file-icon">☕</div>
       <div><div class="file-name">CalculoHoras</div><div class="file-ext">.java</div></div>
       <span class="file-link">ver →</span>
     </a>
 
-    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/EscreveVariaveis.java" target="_blank">
+    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/EscreveVariaveis.java" target="_blank" rel="noopener noreferrer">
       <div class="file-icon">☕</div>
       <div><div class="file-name">EscreveVariaveis</div><div class="file-ext">.java</div></div>
       <span class="file-link">ver →</span>
     </a>
 
-    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/HelloWorld.java" target="_blank">
+    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/HelloWorld.java" target="_blank" rel="noopener noreferrer">
       <div class="file-icon">☕</div>
       <div><div class="file-name">HelloWorld</div><div class="file-ext">.java</div></div>
       <span class="file-link">ver →</span>
     </a>
 
-    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Jantar.java" target="_blank">
+    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Jantar.java" target="_blank" rel="noopener noreferrer">
       <div class="file-icon">☕</div>
       <div><div class="file-name">Jantar</div><div class="file-ext">.java</div></div>
       <span class="file-link">ver →</span>
     </a>
 
-    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/JantarPizza.java" target="_blank">
+    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/JantarPizza.java" target="_blank" rel="noopener noreferrer">
       <div class="file-icon">☕</div>
       <div><div class="file-name">JantarPizza</div><div class="file-ext">.java</div></div>
       <span class="file-link">ver →</span>
     </a>
 
-    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank">
+    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank" rel="noopener noreferrer">
       <div class="file-icon">☕</div>
       <div><div class="file-name">LanHouse</div><div class="file-ext">.java</div></div>
       <span class="file-link">ver →</span>
     </a>
 
-    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LeituraEscrita.java" target="_blank">
+    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LeituraEscrita.java" target="_blank" rel="noopener noreferrer">
       <div class="file-icon">☕</div>
       <div><div class="file-name">LeituraEscrita</div><div class="file-ext">.java</div></div>
       <span class="file-link">ver →</span>
     </a>
 
-    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank">
+    <a class="file-card" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank" rel="noopener noreferrer">
       <div class="file-icon">☕</div>
       <div><div class="file-name">Locadora</div><div class="file-ext">.java</div></div>
       <span class="file-link">ver →</span>
@@ -217,8 +221,8 @@
 <footer>
   <p>© 2026 · João Pedro Fialho · J0aoPFC.github.io</p>
   <div class="footer-links">
-    <a href="https://github.com/J0aoPFC" target="_blank">GitHub</a>
-    <a href="https://linkedin.com/in/joaopedrofialho" target="_blank">LinkedIn</a>
+    <a href="https://github.com/J0aoPFC" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://linkedin.com/in/joaopedrofialho" target="_blank" rel="noopener noreferrer">LinkedIn</a>
   </div>
 </footer>
 
