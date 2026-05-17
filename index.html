@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PortfolioHUB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --pink: #e91e8c;
+      --dark: #0d0d0d;
+      --card: #141414;
+      --muted: #888;
+      --white: #f5f5f5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      overflow-x: hidden;
+    }
+
+    /* HERO */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 2rem;
+      position: relative;
+      border-bottom: 1px solid #222;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(233,30,140,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--pink);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 span { color: var(--pink); }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--pink);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #333;
+      color: var(--white);
+      margin-left: 1rem;
+    }
+    .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
+
+    /* SECTION */
+    section {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--pink);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 2.5rem;
+    }
+
+    /* SOBRE */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid #1e1e1e;
+      padding: 1.8rem;
+    }
+
+    .about-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--pink);
+      margin-bottom: 0.75rem;
+    }
+
+    .about-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    /* PROJETOS */
+    .project-card {
+      background: var(--card);
+      border: 1px solid #1e1e1e;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: var(--pink); }
+
+    .project-info h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-info p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 500px;
+    }
+
+    .project-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      font-size: 0.65rem;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid #2a2a2a;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .version-tag {
+      font-size: 0.7rem;
+      color: var(--pink);
+      white-space: nowrap;
+      margin-top: 0.2rem;
+    }
+
+    /* FERRAMENTAS */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .tool-item {
+      background: var(--card);
+      border: 1px solid #1e1e1e;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .tool-item .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .tool-item h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+    .tool-item p { font-size: 0.72rem; color: var(--muted); }
+
+    /* CONTATO */
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid #222;
+      padding: 0.6rem 1rem;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--pink); color: var(--pink); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #1a1a1a;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: #444;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--pink), transparent);
+      margin: 0 auto;
+      max-width: 900px;
+    }
+
+    /* ANIMATION */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    header > * { animation: fadeUp 0.7s ease both; }
+    header .tag { animation-delay: 0.1s; }
+    header h1 { animation-delay: 0.25s; }
+    header .subtitle { animation-delay: 0.4s; }
+    header .actions { animation-delay: 0.55s; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header>
+    <p class="tag">// Portfólio Acadêmico & Pessoal</p>
+    <h1>Portfolio<span>HUB</span></h1>
+    <p class="subtitle">
+      Repositório de projetos acadêmicos e pessoais, desenvolvido com boas práticas 
+      de versionamento Git + GitHub. Disciplina de Versionamento de Código — 2026.
+    </p>
+    <div class="actions">
+      <a href="https://github.com/seu-usuario" class="btn" target="_blank">Ver no GitHub</a>
+      <a href="https://linkedin.com/in/seu-perfil" class="btn btn-outline" target="_blank">LinkedIn</a>
+    </div>
+  </header>
+
+  <!-- SOBRE -->
+  <section>
+    <p class="section-label">// 01 — Sobre</p>
+    <h2>Quem sou eu</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Estudante</h3>
+        <p>
+          Seu Nome Aqui<br>
+          Curso: Seu Curso<br>
+          Instituição: Sua Instituição<br>
+          Período: 2026
+        </p>
+      </div>
+      <div class="about-card">
+        <h3>Objetivo</h3>
+        <p>
+          Desenvolver um perfil profissional robusto no GitHub, aplicando boas práticas de 
+          versionamento, colaboração e documentação de projetos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJETOS -->
+  <section>
+    <p class="section-label">// 02 — Projetos</p>
+    <h2>O que desenvolvi</h2>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Página Web — Projeto Inicial</h3>
+        <p>
+          Página web desenvolvida como projeto inicial do repositório, com foco em estrutura HTML/CSS 
+          e versionamento progressivo utilizando Git.
+        </p>
+        <div class="project-badges">
+          <span class="badge">HTML</span>
+          <span class="badge">CSS</span>
+          <span class="badge">Git</span>
+          <span class="badge">GitHub Pages</span>
+        </div>
+      </div>
+      <div class="version-tag">v1.0</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Documentação do Repositório</h3>
+        <p>
+          Estrutura organizada de pastas e arquivos README.md detalhados para cada projeto, 
+          seguindo boas práticas de documentação de software.
+        </p>
+        <div class="project-badges">
+          <span class="badge">Markdown</span>
+          <span class="badge">README</span>
+          <span class="badge">Docs</span>
+        </div>
+      </div>
+      <div class="version-tag">v1.0</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FERRAMENTAS -->
+  <section>
+    <p class="section-label">// 03 — Stack</p>
+    <h2>Ferramentas utilizadas</h2>
+    <div class="tools-grid">
+      <div class="tool-item">
+        <div class="icon">⚙️</div>
+        <h4>Git</h4>
+        <p>Versionamento local</p>
+      </div>
+      <div class="tool-item">
+        <div class="icon">🐙</div>
+        <h4>GitHub</h4>
+        <p>Hospedagem remota</p>
+      </div>
+      <div class="tool-item">
+        <div class="icon">🌐</div>
+        <h4>GitHub Pages</h4>
+        <p>Publicação estática</p>
+      </div>
+      <div class="tool-item">
+        <div class="icon">💼</div>
+        <h4>LinkedIn</h4>
+        <p>Perfil profissional</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTATO -->
+  <section>
+    <p class="section-label">// 04 — Contato</p>
+    <h2>Vamos nos conectar</h2>
+    <p style="font-size:0.82rem; color: var(--muted); line-height: 1.9;">
+      Fique à vontade para explorar os projetos, deixar uma estrela no repositório ou entrar em contato.
+    </p>
+    <div class="contact-links">
+      <a href="https://github.com/seu-usuario" class="contact-link" target="_blank">
+        🐙 GitHub
+      </a>
+      <a href="https://linkedin.com/in/seu-perfil" class="contact-link" target="_blank">
+        💼 LinkedIn
+      </a>
+      <a href="mailto:seuemail@email.com" class="contact-link">
+        📧 E-mail
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Feito com Git + GitHub · Desafio Entrega Intermediária 2026</p>
+  </footer>
+
+</body>
+</html>
