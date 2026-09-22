@@ -60,6 +60,73 @@
       color: var(--text);
     }
 
+    .lang-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,15,0.8);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 2rem;
+    }
+    .lang-modal.hidden {
+      display: none;
+    }
+    .lang-modal-card {
+      width: min(520px, 100%);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .lang-modal-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .lang-modal-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    .lang-options {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+    .lang-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 1rem 0.8rem;
+      cursor: pointer;
+      transition: all .2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Mono', monospace;
+    }
+    .lang-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .lang-flag {
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .lang-name {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .hero { position: relative; z-index: 1; padding: 6rem 8vw 4rem; display: flex; flex-direction: column; align-items: flex-start; }
     .hero-tag { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--java); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
     .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--java); display: block; }
@@ -176,10 +243,32 @@
       .nav-links { display: none; }
       nav { gap: 1rem; }
       .lang-switch { min-width: 110px; }
+      .lang-options { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
+<div id="languageModal" class="lang-modal">
+  <div class="lang-modal-card">
+    <div class="lang-modal-title" data-i18n="modal.title">Escolha seu idioma</div>
+    <div class="lang-modal-sub" data-i18n="modal.subtitle">Selecione a linguagem que você prefere para navegar pelo portfólio.</div>
+    <div class="lang-options">
+      <button class="lang-btn" type="button" data-lang="pt">
+        <span class="lang-flag">🇧🇷</span>
+        <span class="lang-name">Português</span>
+      </button>
+      <button class="lang-btn" type="button" data-lang="en">
+        <span class="lang-flag">🇺🇸</span>
+        <span class="lang-name">English</span>
+      </button>
+      <button class="lang-btn" type="button" data-lang="es">
+        <span class="lang-flag">🇪🇸</span>
+        <span class="lang-name">Español</span>
+      </button>
+    </div>
+  </div>
+</div>
 
 <nav>
   <div class="logo">J0aoPFC<span>.github.io</span></div>
@@ -416,6 +505,7 @@
 <script>
   const translations = {
     pt: {
+      modal: { title: 'Escolha seu idioma', subtitle: 'Selecione a linguagem que você prefere para navegar pelo portfólio.' },
       nav: { about: 'Sobre', skills: 'Habilidades', projects: 'Projetos', experience: 'Experiência', contact: 'Contato' },
       hero: {
         tag: 'Engenharia de Software · UniCEUB · Brasília, DF',
@@ -482,6 +572,7 @@
       footer: { github: 'GitHub', linkedin: 'LinkedIn' }
     },
     en: {
+      modal: { title: 'Choose your language', subtitle: 'Select the language you prefer to browse this portfolio.' },
       nav: { about: 'About', skills: 'Skills', projects: 'Projects', experience: 'Experience', contact: 'Contact' },
       hero: {
         tag: 'Software Engineering · UniCEUB · Brasília, DF',
@@ -548,6 +639,7 @@
       footer: { github: 'GitHub', linkedin: 'LinkedIn' }
     },
     es: {
+      modal: { title: 'Elige tu idioma', subtitle: 'Selecciona el idioma que prefieres para navegar por el portafolio.' },
       nav: { about: 'Sobre', skills: 'Habilidades', projects: 'Proyectos', experience: 'Experiencia', contact: 'Contacto' },
       hero: {
         tag: 'Ingeniería de Software · UniCEUB · Brasília, DF',
@@ -622,13 +714,21 @@
     document.querySelectorAll('[data-i18n]').forEach((element) => {
       const key = element.dataset.i18n;
       const value = key.split('.').reduce((obj, part) => obj && obj[part], lang);
-      if (typeof value === 'string') {
-        element.textContent = value;
-      }
+      if (typeof value === 'string') element.textContent = value;
     });
 
     const selector = document.getElementById('languageSelect');
     if (selector) selector.value = language;
+
+    const modal = document.getElementById('languageModal');
+    if (modal) modal.classList.add('hidden');
+
+    localStorage.setItem('portfolioLang', language);
+  }
+
+  function openLanguageModal() {
+    const modal = document.getElementById('languageModal');
+    if (modal) modal.classList.remove('hidden');
   }
 
   const selector = document.getElementById('languageSelect');
@@ -636,7 +736,17 @@
     selector.addEventListener('change', (event) => applyLanguage(event.target.value));
   }
 
-  applyLanguage('pt');
+  document.querySelectorAll('.lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+  });
+
+  const savedLanguage = localStorage.getItem('portfolioLang') || null;
+  if (savedLanguage && translations[savedLanguage]) {
+    applyLanguage(savedLanguage);
+  } else {
+    setTimeout(() => openLanguageModal(), 150);
+    applyLanguage('pt');
+  }
 
   function toggleFolder(row) {
     row.classList.toggle('open');
