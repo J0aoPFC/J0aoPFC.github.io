@@ -20,7 +20,6 @@
       background-size: 40px 40px; pointer-events: none; z-index: 0;
     }
 
-    /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(10,10,15,0.92); backdrop-filter: blur(12px);
@@ -33,23 +32,17 @@
     .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; transition: color .2s; }
     .nav-links a:hover { color: var(--accent); }
     .lang-switch {
-      margin-left: 1.5rem;
+      margin-left: 1.4rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.02);
       border-radius: 999px;
-      padding: 0.25rem 0.75rem;
-    }
-    .lang-switch label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      padding: 0.28rem 0.65rem;
+      min-width: 120px;
     }
     .lang-switch select {
+      width: 100%;
       background: transparent;
       color: var(--text);
       border: none;
@@ -57,13 +50,16 @@
       font-family: 'Space Mono', monospace;
       font-size: 0.75rem;
       cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-align: center;
     }
     .lang-switch option {
       background: var(--surface);
       color: var(--text);
     }
 
-    /* HERO */
     .hero { position: relative; z-index: 1; padding: 6rem 8vw 4rem; display: flex; flex-direction: column; align-items: flex-start; }
     .hero-tag { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--java); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
     .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--java); display: block; }
@@ -81,12 +77,10 @@
     .hstat-n { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--java), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .hstat-l { font-size: 0.72rem; color: var(--muted); font-family: 'Space Mono', monospace; margin-top: 2px; }
 
-    /* SECTIONS */
     section { position: relative; z-index: 1; padding: 5rem 8vw; }
     .sec-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; }
     .sec-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 2.5rem; letter-spacing: -0.02em; }
 
-    /* SOBRE */
     .sobre-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
     .avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-weight: 700; margin-bottom: 1.2rem; }
     .sobre-text p { color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; font-size: 0.95rem; }
@@ -101,7 +95,6 @@
     .area-tag:hover { border-color: var(--accent); color: var(--accent); }
     .area-tag.active { border-color: var(--accent); color: var(--accent); background: rgba(192,38,211,0.08); }
 
-    /* HABILIDADES */
     .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
     .skill-group-title { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
     .skill-bar-row { margin-bottom: 1rem; }
@@ -117,7 +110,6 @@
     .soft-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: var(--muted); }
     .soft-item::before { content: '✓'; color: var(--accent); font-size: 0.75rem; }
 
-    /* PROJETOS - EXPLORER */
     .explorer { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; max-width: 700px; }
     .explorer-header { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; }
     .dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -142,7 +134,6 @@
     .file-arrow { font-size: 0.7rem; color: var(--muted); margin-left: 0.5rem; }
     .file-row:hover .file-arrow { color: var(--java); }
 
-    /* EXPERIÊNCIA */
     .timeline { position: relative; padding-left: 2rem; }
     .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--border); }
     .tl-item { position: relative; margin-bottom: 2.5rem; }
@@ -158,7 +149,6 @@
     .cert-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
     .cert-org { font-size: 0.75rem; color: var(--muted); font-family: 'Space Mono', monospace; }
 
-    /* CONTATO */
     .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
     .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.4rem; display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); transition: all .2s; }
     .contact-card:hover { border-color: var(--accent); transform: translateY(-3px); }
@@ -185,6 +175,7 @@
       .hero-stats { gap: 1.5rem; }
       .nav-links { display: none; }
       nav { gap: 1rem; }
+      .lang-switch { min-width: 110px; }
     }
   </style>
 </head>
@@ -201,17 +192,15 @@
       <a href="#contato" data-i18n="nav.contact">Contato</a>
     </div>
     <div class="lang-switch">
-      <label for="languageSelect">Lang</label>
       <select id="languageSelect" aria-label="Idioma">
-        <option value="pt">PT</option>
-        <option value="en">EN</option>
-        <option value="es">ES</option>
+        <option value="pt">🇧🇷 PT</option>
+        <option value="en">🇺🇸 EN</option>
+        <option value="es">🇪🇸 ES</option>
       </select>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-tag" data-i18n="hero.tag">Engenharia de Software · UniCEUB · Brasília, DF</div>
   <h1>João Pedro<br/><span class="hl">Fialho Campos</span></h1>
@@ -229,7 +218,6 @@
   </div>
 </section>
 
-<!-- SOBRE -->
 <section id="sobre" style="background: var(--surface);">
   <div class="sec-label" data-i18n="about.label">// 01. Sobre</div>
   <h2 class="sec-title" data-i18n="about.title">Sobre Mim</h2>
@@ -262,14 +250,12 @@
   </div>
 </section>
 
-<!-- HABILIDADES -->
 <section id="habilidades">
   <div class="sec-label" data-i18n="skills.label">// 02. Habilidades</div>
   <h2 class="sec-title" data-i18n="skills.title">Habilidades Técnicas</h2>
   <div class="skills-grid">
     <div>
       <div class="skill-group-title" data-i18n="skills.languagesTitle">Linguagens & Tecnologias</div>
-      <!--AUTO:SKILLS_START-->
       <div class="skill-bar-row">
         <div class="skill-bar-label"><span class="skill-bar-name">Java</span><span class="skill-bar-pct">40%</span></div>
         <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:40%"></div></div>
@@ -302,7 +288,6 @@
         <div class="skill-bar-label"><span class="skill-bar-name">Pacote Office</span><span class="skill-bar-pct">80%</span></div>
         <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
       </div>
-      <!--AUTO:SKILLS_END-->
     </div>
     <div>
       <div class="skill-group-title" data-i18n="skills.toolsTitle">Ferramentas</div>
@@ -329,7 +314,6 @@
   </div>
 </section>
 
-<!-- PROJETOS -->
 <section id="projetos" style="background: var(--surface);">
   <div class="sec-label" data-i18n="projects.label">// 03. Projetos</div>
   <h2 class="sec-title" data-i18n="projects.title">Repositório</h2>
@@ -345,43 +329,23 @@
       <span class="folder-count">9 arquivos</span>
     </div>
     <div class="files-list">
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank">
-        <div class="file-dot"></div><span class="file-label">CalculaDobro</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span>
-      </a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank">
-        <div class="file-dot"></div><span class="file-label">CalculoHoras</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span>
-      </a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/EscreveVariaveis.java" target="_blank">
-        <div class="file-dot"></div><span class="file-label">EscreveVariaveis</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span>
-      </a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/HelloWorld.java" target="_blank">
-        <div class="file-dot"></div><span class="file-label">HelloWorld</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span>
-      </a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Jantar.java" target="_blank">
-        <div class="file-dot"></div><span class="file-label">Jantar</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span>
-      </a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/JantarPizza.java" target="_blank">
-        <div class="file-dot"></div><span class="file-label">JantarPizza</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span>
-      </a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank">
-        <div class="file-dot"></div><span class="file-label">LanHouse</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span>
-      </a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LeituraEscrita.java" target="_blank">
-        <div class="file-dot"></div><span class="file-label">LeituraEscrita</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span>
-      </a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank">
-        <div class="file-dot"></div><span class="file-label">Locadora</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span>
-      </a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank"><div class="file-dot"></div><span class="file-label">CalculaDobro</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank"><div class="file-dot"></div><span class="file-label">CalculoHoras</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/EscreveVariaveis.java" target="_blank"><div class="file-dot"></div><span class="file-label">EscreveVariaveis</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/HelloWorld.java" target="_blank"><div class="file-dot"></div><span class="file-label">HelloWorld</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Jantar.java" target="_blank"><div class="file-dot"></div><span class="file-label">Jantar</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/JantarPizza.java" target="_blank"><div class="file-dot"></div><span class="file-label">JantarPizza</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank"><div class="file-dot"></div><span class="file-label">LanHouse</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LeituraEscrita.java" target="_blank"><div class="file-dot"></div><span class="file-label">LeituraEscrita</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank"><div class="file-dot"></div><span class="file-label">Locadora</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
     </div>
   </div>
 </section>
 
-<!-- EXPERIÊNCIA -->
 <section id="experiencia">
   <div class="sec-label" data-i18n="experience.label">// 04. Trajetória</div>
   <h2 class="sec-title" data-i18n="experience.title">Experiências & Formação</h2>
   <div class="timeline">
-    <!--AUTO:TIMELINE_START-->
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-year">jul de 2026 – atual</div>
@@ -410,18 +374,14 @@
       <div class="tl-org">Colégio do Sol</div>
       <div class="tl-desc"></div>
     </div>
-    <!--AUTO:TIMELINE_END-->
   </div>
 
   <div class="certs-grid">
-    <!--AUTO:CERTS_START-->
     <div class="cert-card"><div class="cert-icon">🎓</div><div class="cert-title" data-i18n="certs.cert1">Monitoramento Avançado de Rede com Zabbix + Grafana</div><div class="cert-org">Udemy – 2026</div></div>
     <div class="cert-card"><div class="cert-icon">☕</div><div class="cert-title" data-i18n="certs.cert2">Operador de Micro Avançado – Pacote Office</div><div class="cert-org">Versátil – 2024</div></div>
-    <!--AUTO:CERTS_END-->
   </div>
 </section>
 
-<!-- CONTATO -->
 <section id="contato" style="background: var(--surface);">
   <div class="sec-label" data-i18n="contact.label">// 05. Contato</div>
   <h2 class="sec-title" data-i18n="contact.title">Vamos nos Conectar?</h2>
@@ -667,8 +627,8 @@
       }
     });
 
-    const current = document.getElementById('languageSelect');
-    if (current) current.value = language;
+    const selector = document.getElementById('languageSelect');
+    if (selector) selector.value = language;
   }
 
   const selector = document.getElementById('languageSelect');
