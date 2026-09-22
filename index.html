@@ -32,6 +32,36 @@
     .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; transition: color .2s; }
     .nav-links a:hover { color: var(--accent); }
+    .lang-switch {
+      margin-left: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+    }
+    .lang-switch label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .lang-switch select {
+      background: transparent;
+      color: var(--text);
+      border: none;
+      outline: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .lang-switch option {
+      background: var(--surface);
+      color: var(--text);
+    }
 
     /* HERO */
     .hero { position: relative; z-index: 1; padding: 6rem 8vw 4rem; display: flex; flex-direction: column; align-items: flex-start; }
@@ -58,7 +88,7 @@
 
     /* SOBRE */
     .sobre-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
-    .avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: #fff; font-family: 'Space Mono', monospace; margin-bottom: 1.5rem; }
+    .avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-weight: 700; margin-bottom: 1.2rem; }
     .sobre-text p { color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; font-size: 0.95rem; }
     .info-list { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
     .info-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--muted); font-family: 'Space Mono', monospace; }
@@ -89,7 +119,7 @@
 
     /* PROJETOS - EXPLORER */
     .explorer { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; max-width: 700px; }
-    .explorer-header { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+    .explorer-header { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; }
     .dot { width: 10px; height: 10px; border-radius: 50%; }
     .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
     .folder-row { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.2rem; cursor: pointer; border-bottom: 1px solid var(--border); transition: background .15s; user-select: none; }
@@ -108,7 +138,7 @@
     .file-row:hover .file-dot { opacity: 1; }
     .file-label { font-family: 'Space Mono', monospace; font-size: 0.82rem; color: var(--text); flex: 1; }
     .file-row:hover .file-label { color: var(--java); }
-    .file-ext-badge { font-size: 0.65rem; font-family: 'Space Mono', monospace; color: var(--java); background: rgba(248,152,32,0.1); border: 1px solid rgba(248,152,32,0.25); padding: 0.1rem 0.4rem; border-radius: 4px; }
+    .file-ext-badge { font-size: 0.65rem; font-family: 'Space Mono', monospace; color: var(--java); background: rgba(248,152,32,0.1); border: 1px solid rgba(248,152,32,0.25); padding: 0.1rem 0.4rem; border-radius: 10px; }
     .file-arrow { font-size: 0.7rem; color: var(--muted); margin-left: 0.5rem; }
     .file-row:hover .file-arrow { color: var(--java); }
 
@@ -154,6 +184,7 @@
       .skills-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 1.5rem; }
       .nav-links { display: none; }
+      nav { gap: 1rem; }
     }
   </style>
 </head>
@@ -161,59 +192,70 @@
 
 <nav>
   <div class="logo">J0aoPFC<span>.github.io</span></div>
-  <div class="nav-links">
-    <a href="#sobre">Sobre</a>
-    <a href="#habilidades">Habilidades</a>
-    <a href="#projetos">Projetos</a>
-    <a href="#experiencia">Experiência</a>
-    <a href="#contato">Contato</a>
+  <div style="display:flex; align-items:center;">
+    <div class="nav-links">
+      <a href="#sobre" data-i18n="nav.about">Sobre</a>
+      <a href="#habilidades" data-i18n="nav.skills">Habilidades</a>
+      <a href="#projetos" data-i18n="nav.projects">Projetos</a>
+      <a href="#experiencia" data-i18n="nav.experience">Experiência</a>
+      <a href="#contato" data-i18n="nav.contact">Contato</a>
+    </div>
+    <div class="lang-switch">
+      <label for="languageSelect">Lang</label>
+      <select id="languageSelect" aria-label="Idioma">
+        <option value="pt">PT</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+      </select>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-tag">Engenharia de Software · UniCEUB · Brasília, DF</div>
+  <div class="hero-tag" data-i18n="hero.tag">Engenharia de Software · UniCEUB · Brasília, DF</div>
   <h1>João Pedro<br/><span class="hl">Fialho Campos</span></h1>
-  <p class="hero-sub">Técnico de NOC N1 no BRB · 19 anos</p>
-  <p class="hero-desc">Estudante de Engenharia de Software com experiência prática no mercado financeiro. Buscando crescimento profissional unindo graduação à experiência no BRB.</p>
+  <p class="hero-sub" data-i18n="hero.subtitle">Técnico de NOC N1 no BRB · 19 anos</p>
+  <p class="hero-desc" data-i18n="hero.description">Estudante de Engenharia de Software com experiência prática no mercado financeiro. Buscando crescimento profissional unindo graduação à experiência no BRB.</p>
   <div class="btn-group">
-    <a href="https://github.com/J0aoPFC" class="btn btn-primary" target="_blank">Ver GitHub</a>
-    <a href="https://linkedin.com/in/joaopedrofialho" class="btn btn-ghost" target="_blank">LinkedIn</a>
-    <a href="#contato" class="btn btn-ghost">Contato</a>
+    <a href="https://github.com/J0aoPFC" class="btn btn-primary" target="_blank" data-i18n="hero.githubBtn">Ver GitHub</a>
+    <a href="https://linkedin.com/in/joaopedrofialho" class="btn btn-ghost" target="_blank" data-i18n="hero.linkedinBtn">LinkedIn</a>
+    <a href="#contato" class="btn btn-ghost" data-i18n="hero.contactBtn">Contato</a>
   </div>
   <div class="hero-stats">
-    <div><div class="hstat-n">5+</div><div class="hstat-l">Projetos</div></div>
-    <div><div class="hstat-n">6+</div><div class="hstat-l">Tecnologias</div></div>
-    <div><div class="hstat-n">2029</div><div class="hstat-l">Graduação</div></div>
+    <div><div class="hstat-n">5+</div><div class="hstat-l" data-i18n="hero.stats.projects">Projetos</div></div>
+    <div><div class="hstat-n">6+</div><div class="hstat-l" data-i18n="hero.stats.technologies">Tecnologias</div></div>
+    <div><div class="hstat-n">2029</div><div class="hstat-l" data-i18n="hero.stats.graduation">Graduação</div></div>
   </div>
 </section>
 
 <!-- SOBRE -->
 <section id="sobre" style="background: var(--surface);">
-  <div class="sec-label">// 01. Sobre</div>
-  <h2 class="sec-title">Sobre Mim</h2>
+  <div class="sec-label" data-i18n="about.label">// 01. Sobre</div>
+  <h2 class="sec-title" data-i18n="about.title">Sobre Mim</h2>
   <div class="sobre-grid">
     <div class="sobre-text">
       <div class="avatar">JP</div>
-      <p>Estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no BRB. Com bom desempenho acadêmico e grande disposição para novos aprendizados, busco crescimento profissional unindo os conhecimentos da graduação à experiência prática no mercado financeiro.</p>
+      <p data-i18n="about.text1">Estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no BRB. Com bom desempenho acadêmico e grande disposição para novos aprendizados, busco crescimento profissional unindo formação e prática.</p>
+      <p data-i18n="about.text2">Minha trajetória combina fundamentos de TI, monitoramento de redes e desenvolvimento de soluções com foco em organização, melhoria contínua e atuação em ambientes tecnológicos.</p>
       <div class="info-list">
-        <div class="info-item"><div class="info-dot"></div>UniCEUB · Brasília, DF</div>
-        <div class="info-item"><div class="info-dot"></div>Técnico de NOC N1 — BRB</div>
-        <div class="info-item"><div class="info-dot"></div>19 anos</div>
+        <div class="info-item"><div class="info-dot"></div><span data-i18n="about.info.uniceub">UniCEUB · Brasília, DF</span></div>
+        <div class="info-item"><div class="info-dot"></div><span data-i18n="about.info.job">Técnico de NOC N1 — BRB</span></div>
+        <div class="info-item"><div class="info-dot"></div><span data-i18n="about.info.age">19 anos</span></div>
         <div class="info-item"><div class="info-dot"></div><a href="mailto:jpedro126ps4@gmail.com">jpedro126ps4@gmail.com</a></div>
         <div class="info-item"><div class="info-dot"></div><a href="https://linkedin.com/in/joaopedrofialho" target="_blank">linkedin.com/in/joaopedrofialho</a></div>
       </div>
     </div>
     <div class="sobre-right">
       <div>
-        <div class="skill-group-title">Áreas de Interesse</div>
+        <div class="skill-group-title" data-i18n="about.interestsTitle">Áreas de Interesse</div>
         <div class="area-tags">
-          <span class="area-tag active">Desenvolvimento Web</span>
-          <span class="area-tag active">IA & ML</span>
-          <span class="area-tag">Cloud</span>
-          <span class="area-tag">Segurança</span>
-          <span class="area-tag">Sistemas Bancários</span>
-          <span class="area-tag">POO</span>
+          <span class="area-tag active" data-i18n="about.tags.web">Desenvolvimento Web</span>
+          <span class="area-tag active" data-i18n="about.tags.ai">IA & ML</span>
+          <span class="area-tag" data-i18n="about.tags.cloud">Cloud</span>
+          <span class="area-tag" data-i18n="about.tags.security">Segurança</span>
+          <span class="area-tag" data-i18n="about.tags.banking">Sistemas Bancários</span>
+          <span class="area-tag" data-i18n="about.tags.pojo">POO</span>
         </div>
       </div>
     </div>
@@ -222,11 +264,11 @@
 
 <!-- HABILIDADES -->
 <section id="habilidades">
-  <div class="sec-label">// 02. Habilidades</div>
-  <h2 class="sec-title">Habilidades Técnicas</h2>
+  <div class="sec-label" data-i18n="skills.label">// 02. Habilidades</div>
+  <h2 class="sec-title" data-i18n="skills.title">Habilidades Técnicas</h2>
   <div class="skills-grid">
     <div>
-      <div class="skill-group-title">Linguagens & Tecnologias</div>
+      <div class="skill-group-title" data-i18n="skills.languagesTitle">Linguagens & Tecnologias</div>
       <!--AUTO:SKILLS_START-->
       <div class="skill-bar-row">
         <div class="skill-bar-label"><span class="skill-bar-name">Java</span><span class="skill-bar-pct">40%</span></div>
@@ -263,7 +305,7 @@
       <!--AUTO:SKILLS_END-->
     </div>
     <div>
-      <div class="skill-group-title">Ferramentas</div>
+      <div class="skill-group-title" data-i18n="skills.toolsTitle">Ferramentas</div>
       <div class="tools-grid" style="margin-bottom:1.5rem">
         <span class="tool-tag">IntelliJ IDEA</span>
         <span class="tool-tag">VS Code</span>
@@ -275,13 +317,13 @@
         <span class="tool-tag">POO (Java)</span>
         <span class="tool-tag">Algoritmos</span>
       </div>
-      <div class="skill-group-title">Soft Skills</div>
+      <div class="skill-group-title" data-i18n="skills.softTitle">Soft Skills</div>
       <div class="soft-list">
-        <div class="soft-item">Aprendizado rápido</div>
-        <div class="soft-item">Trabalho em equipe</div>
-        <div class="soft-item">Comunicação assertiva</div>
-        <div class="soft-item">Proatividade</div>
-        <div class="soft-item">Organização</div>
+        <div class="soft-item" data-i18n="skills.soft1">Aprendizado rápido</div>
+        <div class="soft-item" data-i18n="skills.soft2">Trabalho em equipe</div>
+        <div class="soft-item" data-i18n="skills.soft3">Comunicação assertiva</div>
+        <div class="soft-item" data-i18n="skills.soft4">Proatividade</div>
+        <div class="soft-item" data-i18n="skills.soft5">Organização</div>
       </div>
     </div>
   </div>
@@ -289,8 +331,8 @@
 
 <!-- PROJETOS -->
 <section id="projetos" style="background: var(--surface);">
-  <div class="sec-label">// 03. Projetos</div>
-  <h2 class="sec-title">Repositório</h2>
+  <div class="sec-label" data-i18n="projects.label">// 03. Projetos</div>
+  <h2 class="sec-title" data-i18n="projects.title">Repositório</h2>
   <div class="explorer">
     <div class="explorer-header">
       <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
@@ -336,35 +378,35 @@
 
 <!-- EXPERIÊNCIA -->
 <section id="experiencia">
-  <div class="sec-label">// 04. Trajetória</div>
-  <h2 class="sec-title">Experiências & Formação</h2>
+  <div class="sec-label" data-i18n="experience.label">// 04. Trajetória</div>
+  <h2 class="sec-title" data-i18n="experience.title">Experiências & Formação</h2>
   <div class="timeline">
     <!--AUTO:TIMELINE_START-->
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-year">jul de 2026 – atual</div>
-      <div class="tl-title">Técnico de NOC N1</div>
+      <div class="tl-title" data-i18n="experience.job1Title">Técnico de NOC N1</div>
       <div class="tl-org">Banco de Brasília (BRB Serviços)</div>
-      <div class="tl-desc">Gestão de alertas via Zabbix, monitorando infraestrutura e redes em tempo real. Reconhecimento e triagem inicial de falhas, contribuindo para redução no tempo de resposta a incidentes. Atuação alinhada a boas práticas de ITIL em ambiente corporativo.</div>
+      <div class="tl-desc" data-i18n="experience.job1Desc">Gestão de alertas via Zabbix, monitorando infraestrutura e redes em tempo real. Reconhecimento e triagem inicial de falhas, contribuindo para redução no tempo de resposta.</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-year">abr de 2026 – jun de 2026</div>
-      <div class="tl-title">Aprendiz – Suporte de TI</div>
+      <div class="tl-title" data-i18n="experience.job2Title">Aprendiz – Suporte de TI</div>
       <div class="tl-org">Banco de Brasília (BRB Serviços)</div>
-      <div class="tl-desc">Acompanhamento de Acordos de Nível de Serviço (SLA), monitorando prazos e qualidade de entrega. Contribuição para manter os indicadores de atendimento dentro da meta da equipe.</div>
+      <div class="tl-desc" data-i18n="experience.job2Desc">Acompanhamento de Acordos de Nível de Serviço (SLA), monitorando prazos e qualidade de entrega. Contribuição para manter os indicadores de atendimento dentro da meta.</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-year">2026 – 2029 (em curso)</div>
-      <div class="tl-title">Bacharelado em Engenharia de Software</div>
+      <div class="tl-title" data-i18n="experience.edu1Title">Bacharelado em Engenharia de Software</div>
       <div class="tl-org">UniCEUB – Brasília, DF</div>
       <div class="tl-desc"></div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-year">2023 – 2025</div>
-      <div class="tl-title">Ensino Médio Completo</div>
+      <div class="tl-title" data-i18n="experience.edu2Title">Ensino Médio Completo</div>
       <div class="tl-org">Colégio do Sol</div>
       <div class="tl-desc"></div>
     </div>
@@ -373,32 +415,32 @@
 
   <div class="certs-grid">
     <!--AUTO:CERTS_START-->
-    <div class="cert-card"><div class="cert-icon">🎓</div><div class="cert-title">Monitoramento Avançado de Rede com Zabbix + Grafana</div><div class="cert-org">Udemy – 2026</div></div>
-    <div class="cert-card"><div class="cert-icon">☕</div><div class="cert-title">Operador de Micro Avançado – Pacote Office</div><div class="cert-org">Versátil – 2024</div></div>
+    <div class="cert-card"><div class="cert-icon">🎓</div><div class="cert-title" data-i18n="certs.cert1">Monitoramento Avançado de Rede com Zabbix + Grafana</div><div class="cert-org">Udemy – 2026</div></div>
+    <div class="cert-card"><div class="cert-icon">☕</div><div class="cert-title" data-i18n="certs.cert2">Operador de Micro Avançado – Pacote Office</div><div class="cert-org">Versátil – 2024</div></div>
     <!--AUTO:CERTS_END-->
   </div>
 </section>
 
 <!-- CONTATO -->
 <section id="contato" style="background: var(--surface);">
-  <div class="sec-label">// 05. Contato</div>
-  <h2 class="sec-title">Vamos nos Conectar?</h2>
+  <div class="sec-label" data-i18n="contact.label">// 05. Contato</div>
+  <h2 class="sec-title" data-i18n="contact.title">Vamos nos Conectar?</h2>
   <div class="contact-grid">
     <a class="contact-card" href="mailto:jpedro126ps4@gmail.com">
       <span class="contact-icon">✉️</span>
-      <div><div class="contact-label">E-mail</div><div class="contact-value">jpedro126ps4@gmail.com</div></div>
+      <div><div class="contact-label" data-i18n="contact.emailLabel">E-mail</div><div class="contact-value">jpedro126ps4@gmail.com</div></div>
     </a>
     <a class="contact-card" href="https://linkedin.com/in/joaopedrofialho" target="_blank">
       <span class="contact-icon">🔗</span>
-      <div><div class="contact-label">LinkedIn</div><div class="contact-value">joaopedrofialho</div></div>
+      <div><div class="contact-label" data-i18n="contact.linkedinLabel">LinkedIn</div><div class="contact-value">joaopedrofialho</div></div>
     </a>
     <a class="contact-card" href="https://github.com/J0aoPFC" target="_blank">
       <span class="contact-icon">⌨️</span>
-      <div><div class="contact-label">GitHub</div><div class="contact-value">J0aoPFC</div></div>
+      <div><div class="contact-label" data-i18n="contact.githubLabel">GitHub</div><div class="contact-value">J0aoPFC</div></div>
     </a>
     <a class="contact-card" href="tel:+5561995816421">
       <span class="contact-icon">📱</span>
-      <div><div class="contact-label">Telefone</div><div class="contact-value">(61) 99581-6421</div></div>
+      <div><div class="contact-label" data-i18n="contact.phoneLabel">Telefone</div><div class="contact-value">(61) 99581-6421</div></div>
     </a>
   </div>
 </section>
@@ -406,12 +448,236 @@
 <footer>
   <p>© 2026 · João Pedro Fialho Campos · J0aoPFC.github.io</p>
   <div class="footer-links">
-    <a href="https://github.com/J0aoPFC" target="_blank">GitHub</a>
-    <a href="https://linkedin.com/in/joaopedrofialho" target="_blank">LinkedIn</a>
+    <a href="https://github.com/J0aoPFC" target="_blank" data-i18n="footer.github">GitHub</a>
+    <a href="https://linkedin.com/in/joaopedrofialho" target="_blank" data-i18n="footer.linkedin">LinkedIn</a>
   </div>
 </footer>
 
 <script>
+  const translations = {
+    pt: {
+      nav: { about: 'Sobre', skills: 'Habilidades', projects: 'Projetos', experience: 'Experiência', contact: 'Contato' },
+      hero: {
+        tag: 'Engenharia de Software · UniCEUB · Brasília, DF',
+        subtitle: 'Técnico de NOC N1 no BRB · 19 anos',
+        description: 'Estudante de Engenharia de Software com experiência prática no mercado financeiro. Buscando crescimento profissional unindo graduação à experiência no BRB.',
+        githubBtn: 'Ver GitHub',
+        linkedinBtn: 'LinkedIn',
+        contactBtn: 'Contato',
+        'stats.projects': 'Projetos',
+        'stats.technologies': 'Tecnologias',
+        'stats.graduation': 'Graduação'
+      },
+      about: {
+        label: '// 01. Sobre',
+        title: 'Sobre Mim',
+        text1: 'Estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no BRB. Com bom desempenho acadêmico e grande disposição para novos aprendizados, busco crescimento profissional unindo formação e prática.',
+        text2: 'Minha trajetória combina fundamentos de TI, monitoramento de redes e desenvolvimento de soluções com foco em organização, melhoria contínua e atuação em ambientes tecnológicos.',
+        'info.uniceub': 'UniCEUB · Brasília, DF',
+        'info.job': 'Técnico de NOC N1 — BRB',
+        'info.age': '19 anos',
+        interestsTitle: 'Áreas de Interesse',
+        'tags.web': 'Desenvolvimento Web',
+        'tags.ai': 'IA & ML',
+        'tags.cloud': 'Cloud',
+        'tags.security': 'Segurança',
+        'tags.banking': 'Sistemas Bancários',
+        'tags.pojo': 'POO'
+      },
+      skills: {
+        label: '// 02. Habilidades',
+        title: 'Habilidades Técnicas',
+        languagesTitle: 'Linguagens & Tecnologias',
+        toolsTitle: 'Ferramentas',
+        softTitle: 'Soft Skills',
+        soft1: 'Aprendizado rápido',
+        soft2: 'Trabalho em equipe',
+        soft3: 'Comunicação assertiva',
+        soft4: 'Proatividade',
+        soft5: 'Organização'
+      },
+      projects: { label: '// 03. Projetos', title: 'Repositório' },
+      experience: {
+        label: '// 04. Trajetória',
+        title: 'Experiências & Formação',
+        job1Title: 'Técnico de NOC N1',
+        job1Desc: 'Gestão de alertas via Zabbix, monitorando infraestrutura e redes em tempo real. Reconhecimento e triagem inicial de falhas, contribuindo para redução no tempo de resposta.',
+        job2Title: 'Aprendiz – Suporte de TI',
+        job2Desc: 'Acompanhamento de Acordos de Nível de Serviço (SLA), monitorando prazos e qualidade de entrega. Contribuição para manter os indicadores de atendimento dentro da meta.',
+        edu1Title: 'Bacharelado em Engenharia de Software',
+        edu2Title: 'Ensino Médio Completo'
+      },
+      certs: {
+        cert1: 'Monitoramento Avançado de Rede com Zabbix + Grafana',
+        cert2: 'Operador de Micro Avançado – Pacote Office'
+      },
+      contact: {
+        label: '// 05. Contato',
+        title: 'Vamos nos Conectar?',
+        emailLabel: 'E-mail',
+        linkedinLabel: 'LinkedIn',
+        githubLabel: 'GitHub',
+        phoneLabel: 'Telefone'
+      },
+      footer: { github: 'GitHub', linkedin: 'LinkedIn' }
+    },
+    en: {
+      nav: { about: 'About', skills: 'Skills', projects: 'Projects', experience: 'Experience', contact: 'Contact' },
+      hero: {
+        tag: 'Software Engineering · UniCEUB · Brasília, DF',
+        subtitle: 'NOC N1 Technician at BRB · 19 years old',
+        description: 'Software Engineering student with practical experience in the financial market. Looking for professional growth by combining graduation with experience at BRB.',
+        githubBtn: 'View GitHub',
+        linkedinBtn: 'LinkedIn',
+        contactBtn: 'Contact',
+        'stats.projects': 'Projects',
+        'stats.technologies': 'Technologies',
+        'stats.graduation': 'Graduation'
+      },
+      about: {
+        label: '// 01. About',
+        title: 'About Me',
+        text1: 'Software Engineering student at UniCEUB and NOC N1 technician at BRB. With strong academic performance and a great willingness to learn, I seek professional growth by combining education and practice.',
+        text2: 'My path combines IT fundamentals, network monitoring and solution development with a focus on organization, continuous improvement and work in technological environments.',
+        'info.uniceub': 'UniCEUB · Brasília, DF',
+        'info.job': 'NOC N1 Technician — BRB',
+        'info.age': '19 years old',
+        interestsTitle: 'Areas of Interest',
+        'tags.web': 'Web Development',
+        'tags.ai': 'AI & ML',
+        'tags.cloud': 'Cloud',
+        'tags.security': 'Security',
+        'tags.banking': 'Banking Systems',
+        'tags.pojo': 'OOP'
+      },
+      skills: {
+        label: '// 02. Skills',
+        title: 'Technical Skills',
+        languagesTitle: 'Languages & Technologies',
+        toolsTitle: 'Tools',
+        softTitle: 'Soft Skills',
+        soft1: 'Fast learner',
+        soft2: 'Teamwork',
+        soft3: 'Assertive communication',
+        soft4: 'Proactivity',
+        soft5: 'Organization'
+      },
+      projects: { label: '// 03. Projects', title: 'Repository' },
+      experience: {
+        label: '// 04. Journey',
+        title: 'Experience & Education',
+        job1Title: 'NOC N1 Technician',
+        job1Desc: 'Alert management through Zabbix, monitoring infrastructure and networks in real time. Initial recognition and triage of failures, contributing to reduced response time.',
+        job2Title: 'Trainee – IT Support',
+        job2Desc: 'Monitoring Service Level Agreements (SLAs), tracking deadlines and delivery quality. Contributing to keep service indicators within target.',
+        edu1Title: 'Bachelor of Software Engineering',
+        edu2Title: 'High School Diploma'
+      },
+      certs: {
+        cert1: 'Advanced Network Monitoring with Zabbix + Grafana',
+        cert2: 'Advanced Micro Operator – Office Package'
+      },
+      contact: {
+        label: '// 05. Contact',
+        title: 'Let’s Connect?',
+        emailLabel: 'E-mail',
+        linkedinLabel: 'LinkedIn',
+        githubLabel: 'GitHub',
+        phoneLabel: 'Phone'
+      },
+      footer: { github: 'GitHub', linkedin: 'LinkedIn' }
+    },
+    es: {
+      nav: { about: 'Sobre', skills: 'Habilidades', projects: 'Proyectos', experience: 'Experiencia', contact: 'Contacto' },
+      hero: {
+        tag: 'Ingeniería de Software · UniCEUB · Brasília, DF',
+        subtitle: 'Técnico NOC N1 en BRB · 19 años',
+        description: 'Estudiante de Ingeniería de Software con experiencia práctica en el mercado financiero. Buscando crecimiento profesional combinando la graduación con la experiencia en BRB.',
+        githubBtn: 'Ver GitHub',
+        linkedinBtn: 'LinkedIn',
+        contactBtn: 'Contacto',
+        'stats.projects': 'Proyectos',
+        'stats.technologies': 'Tecnologías',
+        'stats.graduation': 'Graduación'
+      },
+      about: {
+        label: '// 01. Sobre',
+        title: 'Sobre Mí',
+        text1: 'Estudiante de Ingeniería de Software en UniCEUB y Técnico NOC N1 en BRB. Con buen desempeño académico y gran disposición para aprender, busco crecimiento profesional combinando formación y práctica.',
+        text2: 'Mi trayectoria combina fundamentos de TI, monitoreo de redes y desarrollo de soluciones con enfoque en organización, mejora continua y trabajo en entornos tecnológicos.',
+        'info.uniceub': 'UniCEUB · Brasília, DF',
+        'info.job': 'Técnico NOC N1 — BRB',
+        'info.age': '19 años',
+        interestsTitle: 'Áreas de Interés',
+        'tags.web': 'Desarrollo Web',
+        'tags.ai': 'IA & ML',
+        'tags.cloud': 'Cloud',
+        'tags.security': 'Seguridad',
+        'tags.banking': 'Sistemas Bancarios',
+        'tags.pojo': 'POO'
+      },
+      skills: {
+        label: '// 02. Habilidades',
+        title: 'Habilidades Técnicas',
+        languagesTitle: 'Lenguajes & Tecnologías',
+        toolsTitle: 'Herramientas',
+        softTitle: 'Habilidades Blandas',
+        soft1: 'Aprendizaje rápido',
+        soft2: 'Trabajo en equipo',
+        soft3: 'Comunicación asertiva',
+        soft4: 'Proactividad',
+        soft5: 'Organización'
+      },
+      projects: { label: '// 03. Proyectos', title: 'Repositorio' },
+      experience: {
+        label: '// 04. Trayectoria',
+        title: 'Experiencia & Formación',
+        job1Title: 'Técnico NOC N1',
+        job1Desc: 'Gestión de alertas a través de Zabbix, monitorizando infraestructura y redes en tiempo real. Reconocimiento y triage inicial de fallas, contribuyendo a reducir el tiempo de respuesta.',
+        job2Title: 'Aprendiz – Soporte de TI',
+        job2Desc: 'Seguimiento de Acuerdos de Nivel de Servicio (SLA), monitoreando plazos y calidad de entrega. Contribución para mantener los indicadores de atención dentro de la meta.',
+        edu1Title: 'Licenciatura en Ingeniería de Software',
+        edu2Title: 'Educación Media Completa'
+      },
+      certs: {
+        cert1: 'Monitoreo Avanzado de Red con Zabbix + Grafana',
+        cert2: 'Operador de Micro Avanzado – Paquete Office'
+      },
+      contact: {
+        label: '// 05. Contacto',
+        title: '¿Conectamos?',
+        emailLabel: 'Correo',
+        linkedinLabel: 'LinkedIn',
+        githubLabel: 'GitHub',
+        phoneLabel: 'Teléfono'
+      },
+      footer: { github: 'GitHub', linkedin: 'LinkedIn' }
+    }
+  };
+
+  function applyLanguage(language) {
+    const lang = translations[language] || translations.pt;
+    document.documentElement.lang = language === 'pt' ? 'pt-BR' : language === 'en' ? 'en-US' : 'es-ES';
+
+    document.querySelectorAll('[data-i18n]').forEach((element) => {
+      const key = element.dataset.i18n;
+      const value = key.split('.').reduce((obj, part) => obj && obj[part], lang);
+      if (typeof value === 'string') {
+        element.textContent = value;
+      }
+    });
+
+    const current = document.getElementById('languageSelect');
+    if (current) current.value = language;
+  }
+
+  const selector = document.getElementById('languageSelect');
+  if (selector) {
+    selector.addEventListener('change', (event) => applyLanguage(event.target.value));
+  }
+
+  applyLanguage('pt');
+
   function toggleFolder(row) {
     row.classList.toggle('open');
     const list = row.nextElementSibling;
