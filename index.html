@@ -143,7 +143,7 @@
     .lang-name { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
 
     .hero { position: relative; z-index: 1; padding: 6rem 8vw 4rem; display: flex; flex-direction: column; align-items: flex-start; }
-    .hero-tag { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--java); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-tag { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--java); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.7rem; }
     .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--java); display: block; }
     h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1rem; }
     h1 .hl { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -164,7 +164,7 @@
     .sec-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 2.5rem; letter-spacing: -0.02em; }
 
     .sobre-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
-    .avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-weight: 700; margin-bottom: 1.2rem; }
+    .avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; }
     .sobre-text p { color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; font-size: 0.95rem; }
     .info-list { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
     .info-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--muted); font-family: 'Space Mono', monospace; }
@@ -212,7 +212,7 @@
     .file-row:hover .file-dot { opacity: 1; }
     .file-label { font-family: 'Space Mono', monospace; font-size: 0.82rem; color: var(--text); flex: 1; }
     .file-row:hover .file-label { color: var(--java); }
-    .file-ext-badge { font-size: 0.65rem; font-family: 'Space Mono', monospace; color: var(--java); background: rgba(248,152,32,0.1); border: 1px solid rgba(248,152,32,0.25); padding: 0.1rem 0.4rem; border-radius: 10px; }
+    .file-ext-badge { font-size: 0.65rem; font-family: 'Space Mono', monospace; color: var(--java); background: rgba(248,152,32,0.1); border: 1px solid rgba(248,152,32,0.25); padding: 0.1rem 0.4rem; border-radius: 999px; }
     .file-arrow { font-size: 0.7rem; color: var(--muted); margin-left: 0.5rem; }
     .file-row:hover .file-arrow { color: var(--java); }
 
@@ -328,7 +328,7 @@
   <div class="sobre-grid">
     <div class="sobre-text">
       <div class="avatar">JP</div>
-      <p data-i18n="about.text1">Estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no BRB. Com bom desempenho acadêmico e grande disposição para novos aprendizados, busco crescimento profissional unindo formação e prática.</p>
+      <p data-i18n="about.text1">Estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no BRB. Com bom desempenho acadêmico e grande disposição para novos aprendizados, busco crescimento profissional combinando graduação e experiência prática.</p>
       <p data-i18n="about.text2">Minha trajetória combina fundamentos de TI, monitoramento de redes e desenvolvimento de soluções com foco em organização, melhoria contínua e atuação em ambientes tecnológicos.</p>
       <div class="info-list">
         <div class="info-item"><div class="info-dot"></div><span data-i18n="about.info.uniceub">UniCEUB · Brasília, DF</span></div>
@@ -433,15 +433,15 @@
       <span class="folder-count">9 arquivos</span>
     </div>
     <div class="files-list">
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank"><div class="file-dot"></div><span class="file-label">CalculaDobro</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank"><div class="file-dot"></div><span class="file-label">CalculoHoras</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/EscreveVariaveis.java" target="_blank"><div class="file-dot"></div><span class="file-label">EscreveVariaveis</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/HelloWorld.java" target="_blank"><div class="file-dot"></div><span class="file-label">HelloWorld</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Jantar.java" target="_blank"><div class="file-dot"></div><span class="file-label">Jantar</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/JantarPizza.java" target="_blank"><div class="file-dot"></div><span class="file-label">JantarPizza</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank"><div class="file-dot"></div><span class="file-label">LanHouse</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LeituraEscrita.java" target="_blank"><div class="file-dot"></div><span class="file-label">LeituraEscrita</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank"><div class="file-dot"></div><span class="file-label">Locadora</span><span class="file-ext-badge">.java</span><span class="file-arrow">↗</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank"><div class="file-dot"></div><span class="file-label">CalculaDobro</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank"><div class="file-dot"></div><span class="file-label">CalculoHoras</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/EscreveVariaveis.java" target="_blank"><div class="file-dot"></div><span class="file-label">EscreveVariaveis</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/HelloWorld.java" target="_blank"><div class="file-dot"></div><span class="file-label">HelloWorld</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Jantar.java" target="_blank"><div class="file-dot"></div><span class="file-label">Jantar</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/JantarPizza.java" target="_blank"><div class="file-dot"></div><span class="file-label">JantarPizza</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank"><div class="file-dot"></div><span class="file-label">LanHouse</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LeituraEscrita.java" target="_blank"><div class="file-dot"></div><span class="file-label">LeituraEscrita</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
+      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank"><div class="file-dot"></div><span class="file-label">Locadora</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -481,8 +481,8 @@
   </div>
 
   <div class="certs-grid">
-    <div class="cert-card"><div class="cert-icon">🎓</div><div class="cert-title" data-i18n="certs.cert1">Monitoramento Avançado de Rede com Zabbix + Grafana</div><div class="cert-org">Udemy – 2026</div></div>
-    <div class="cert-card"><div class="cert-icon">☕</div><div class="cert-title" data-i18n="certs.cert2">Operador de Micro Avançado – Pacote Office</div><div class="cert-org">Versátil – 2024</div></div>
+    <div class="cert-card"><div class="cert-icon">🎓</div><div class="cert-title" data-i18n="certs.cert1">Monitoramento Avançado de Rede com Zabbix + Grafana</div><div class="cert-org">Udemy · 2025</div></div>
+    <div class="cert-card"><div class="cert-icon">☕</div><div class="cert-title" data-i18n="certs.cert2">Operador de Micro Avançado – Pacote Office</div><div class="cert-org">Versátil · 2024</div></div>
   </div>
 </section>
 
@@ -536,7 +536,7 @@
       about: {
         label: '// 01. Sobre',
         title: 'Sobre Mim',
-        text1: 'Estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no BRB. Com bom desempenho acadêmico e grande disposição para novos aprendizados, busco crescimento profissional unindo formação e prática.',
+        text1: 'Estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no BRB. Com bom desempenho acadêmico e grande disposição para novos aprendizados, busco crescimento profissional combinando graduação e experiência prática.',
         text2: 'Minha trajetória combina fundamentos de TI, monitoramento de redes e desenvolvimento de soluções com foco em organização, melhoria contínua e atuação em ambientes tecnológicos.',
         'info.uniceub': 'UniCEUB · Brasília, DF',
         'info.job': 'Técnico de NOC N1 — BRB',
@@ -603,7 +603,7 @@
       about: {
         label: '// 01. About',
         title: 'About Me',
-        text1: 'Software Engineering student at UniCEUB and NOC N1 technician at BRB. With strong academic performance and a great willingness to learn, I seek professional growth by combining education and practice.',
+        text1: 'Software Engineering student at UniCEUB and NOC N1 technician at BRB. With strong academic performance and a great willingness to learn, I seek professional growth by combining education and practical experience.',
         text2: 'My path combines IT fundamentals, network monitoring and solution development with a focus on organization, continuous improvement and work in technological environments.',
         'info.uniceub': 'UniCEUB · Brasília, DF',
         'info.job': 'NOC N1 Technician — BRB',
@@ -670,7 +670,7 @@
       about: {
         label: '// 01. Sobre',
         title: 'Sobre Mí',
-        text1: 'Estudiante de Ingeniería de Software en UniCEUB y Técnico NOC N1 en BRB. Con buen desempeño académico y gran disposición para aprender, busco crecimiento profesional combinando formación y práctica.',
+        text1: 'Estudiante de Ingeniería de Software en UniCEUB y Técnico NOC N1 en BRB. Con buen desempeño académico y gran disposición para aprender, busco crecimiento profesional combinando educación y experiencia práctica.',
         text2: 'Mi trayectoria combina fundamentos de TI, monitoreo de redes y desarrollo de soluciones con enfoque en organización, mejora continua y trabajo en entornos tecnológicos.',
         'info.uniceub': 'UniCEUB · Brasília, DF',
         'info.job': 'Técnico NOC N1 — BRB',
@@ -737,8 +737,6 @@
 
     const modal = document.getElementById('languageModal');
     if (modal) modal.classList.add('hidden');
-
-    localStorage.setItem('portfolioLang', language);
   }
 
   function openLanguageModal() {
@@ -755,13 +753,8 @@
     btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
   });
 
-  const savedLanguage = localStorage.getItem('portfolioLang') || null;
-  if (savedLanguage && translations[savedLanguage]) {
-    applyLanguage(savedLanguage);
-  } else {
-    setTimeout(() => openLanguageModal(), 150);
-    applyLanguage('pt');
-  }
+  setTimeout(() => openLanguageModal(), 150);
+  applyLanguage('pt');
 
   function toggleFolder(row) {
     row.classList.toggle('open');
