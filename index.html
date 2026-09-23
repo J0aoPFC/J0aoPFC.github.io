@@ -1,768 +1,298 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>João Pedro Fialho | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg: #0a0a0f; --surface: #13131a; --card: #1a1a24;
-      --accent: #c026d3; --accent2: #7c3aed;
-      --text: #e8e8f0; --muted: #8888aa; --border: #2a2a3a;
-      --java: #f89820;
-      --shadow: rgba(0, 0, 0, 0.35);
-    }
+const languageModal = document.getElementById("languageModal");
+const languageButton = document.getElementById("changeLanguage");
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Sora', sans-serif; min-height: 100vh; overflow-x: hidden; }
-    body::before {
-      content: ''; position: fixed; inset: 0;
-      background-image: linear-gradient(rgba(192,38,211,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(192,38,211,0.04) 1px, transparent 1px);
-      background-size: 40px 40px; pointer-events: none; z-index: 0;
-    }
-
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(10,10,15,0.92); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 6vw; display: flex; justify-content: space-between; align-items: center;
-    }
-    .logo { font-family: 'Space Mono', monospace; font-size: 1rem; color: var(--accent); }
-    .logo span { color: var(--text); }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; transition: color .2s; }
-    .nav-links a:hover { color: var(--accent); }
-
-    .lang-switch {
-      margin-left: 1.4rem;
-      display: flex;
-      align-items: center;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-      border-radius: 999px;
-      padding: 0.28rem 0.7rem;
-      min-width: 124px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.18);
-      transition: all .2s ease;
-    }
-    .lang-switch:hover { border-color: rgba(192, 38, 211, 0.7); box-shadow: 0 0 0 1px rgba(192, 38, 211, 0.25); }
-    .lang-switch select {
-      width: 100%;
-      background: transparent;
-      color: var(--text);
-      border: none;
-      outline: none;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      cursor: pointer;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      text-align: center;
-      letter-spacing: 0.06em;
-    }
-    .lang-switch option { background: var(--surface); color: var(--text); }
-
-    .lang-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(10,10,15,0.78);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-      padding: 2rem;
-      transition: opacity .25s ease;
-    }
-    .lang-modal.hidden { display: none; }
-    .lang-modal-card {
-      width: min(560px, 100%);
-      background: linear-gradient(180deg, rgba(19,19,26,0.98), rgba(10,10,15,0.96));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.45);
-      padding: 2rem 1.5rem 1.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .lang-modal-card::before {
-      content: '';
-      position: absolute;
-      top: -30%; left: 50%; transform: translateX(-50%);
-      width: 140%; height: 120%;
-      background: radial-gradient(circle, rgba(192,38,211,0.18), transparent 55%);
-      pointer-events: none;
-    }
-    .lang-modal-title {
-      position: relative;
-      z-index: 1;
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-    .lang-modal-sub {
-      position: relative;
-      z-index: 1;
-      font-size: 0.92rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-    .lang-options {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.9rem;
-    }
-    .lang-btn {
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(26,26,36,0.95), rgba(19,19,26,0.96));
-      color: var(--text);
-      border-radius: 16px;
-      padding: 1rem 0.8rem;
-      cursor: pointer;
-      transition: all .2s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.55rem;
-      font-family: 'Space Mono', monospace;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-    }
-    .lang-btn:hover {
-      border-color: rgba(192,38,211,0.8);
-      transform: translateY(-3px);
-      box-shadow: 0 18px 28px rgba(0,0,0,0.2), 0 0 0 1px rgba(192,38,211,0.2);
-    }
-    .lang-flag { font-size: 2.1rem; line-height: 1; }
-    .lang-name { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
-
-    .hero { position: relative; z-index: 1; padding: 6rem 8vw 4rem; display: flex; flex-direction: column; align-items: flex-start; }
-    .hero-tag { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--java); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.7rem; }
-    .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--java); display: block; }
-    h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1rem; }
-    h1 .hl { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-sub { color: var(--muted); font-size: 1rem; margin-bottom: 0.5rem; }
-    .hero-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 560px; margin-bottom: 2rem; }
-    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-    .btn { padding: 0.7rem 1.5rem; border-radius: 6px; font-family: 'Space Mono', monospace; font-size: 0.8rem; text-decoration: none; transition: all .2s; }
-    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; }
-    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
-    .btn-ghost { border: 1px solid var(--border); color: var(--text); }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-    .hero-stats { display: flex; gap: 3rem; }
-    .hstat-n { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--java), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hstat-l { font-size: 0.72rem; color: var(--muted); font-family: 'Space Mono', monospace; margin-top: 2px; }
-
-    section { position: relative; z-index: 1; padding: 5rem 8vw; }
-    .sec-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .sec-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 2.5rem; letter-spacing: -0.02em; }
-
-    .sobre-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
-    .avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; }
-    .sobre-text p { color: var(--muted); line-height: 1.8; margin-bottom: 0.8rem; font-size: 0.95rem; }
-    .info-list { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
-    .info-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--muted); font-family: 'Space Mono', monospace; }
-    .info-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-    .info-item a { color: var(--accent); text-decoration: none; }
-    .info-item a:hover { text-decoration: underline; }
-    .sobre-right { display: flex; flex-direction: column; gap: 1.5rem; }
-    .area-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .area-tag { padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.75rem; font-family: 'Space Mono', monospace; border: 1px solid var(--border); color: var(--muted); transition: all .2s; }
-    .area-tag:hover { border-color: var(--accent); color: var(--accent); }
-    .area-tag.active { border-color: var(--accent); color: var(--accent); background: rgba(192,38,211,0.08); }
-
-    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    .skill-group-title { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
-    .skill-bar-row { margin-bottom: 1rem; }
-    .skill-bar-label { display: flex; justify-content: space-between; margin-bottom: 0.35rem; }
-    .skill-bar-name { font-size: 0.85rem; color: var(--text); }
-    .skill-bar-pct { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); }
-    .skill-bar-bg { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
-    .skill-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 1s ease; }
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .tool-tag { padding: 0.35rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.75rem; font-family: 'Space Mono', monospace; color: var(--muted); transition: all .2s; }
-    .tool-tag:hover { border-color: var(--java); color: var(--java); }
-    .soft-list { display: flex; flex-direction: column; gap: 0.4rem; }
-    .soft-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: var(--muted); }
-    .soft-item::before { content: '✓'; color: var(--accent); font-size: 0.75rem; }
-
-    .explorer { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; max-width: 700px; }
-    .explorer-header { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
-    .folder-row { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.2rem; cursor: pointer; border-bottom: 1px solid var(--border); transition: background .15s; user-select: none; }
-    .folder-row:last-child { border-bottom: none; }
-    .folder-row:hover { background: rgba(192,38,211,0.06); }
-    .folder-name { font-family: 'Space Mono', monospace; font-size: 0.9rem; color: var(--java); font-weight: 700; }
-    .folder-count { margin-left: auto; font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); background: rgba(255,255,255,0.05); padding: 0.15rem 0.5rem; border-radius: 10px; }
-    .chevron { font-size: 0.7rem; color: var(--muted); transition: transform .25s; }
-    .folder-row.open .chevron { transform: rotate(90deg); }
-    .files-list { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
-    .files-list.open { max-height: 800px; }
-    .file-row { display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1.2rem 0.65rem 2.8rem; border-bottom: 1px solid rgba(42,42,58,0.5); text-decoration: none; transition: background .15s; }
-    .file-row:last-child { border-bottom: none; }
-    .file-row:hover { background: rgba(248,152,32,0.07); }
-    .file-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--java); opacity: 0.5; flex-shrink: 0; }
-    .file-row:hover .file-dot { opacity: 1; }
-    .file-label { font-family: 'Space Mono', monospace; font-size: 0.82rem; color: var(--text); flex: 1; }
-    .file-row:hover .file-label { color: var(--java); }
-    .file-ext-badge { font-size: 0.65rem; font-family: 'Space Mono', monospace; color: var(--java); background: rgba(248,152,32,0.1); border: 1px solid rgba(248,152,32,0.25); padding: 0.1rem 0.4rem; border-radius: 999px; }
-    .file-arrow { font-size: 0.7rem; color: var(--muted); margin-left: 0.5rem; }
-    .file-row:hover .file-arrow { color: var(--java); }
-
-    .timeline { position: relative; padding-left: 2rem; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--border); }
-    .tl-item { position: relative; margin-bottom: 2.5rem; }
-    .tl-item:last-child { margin-bottom: 0; }
-    .tl-dot { position: absolute; left: -2.4rem; top: 0.3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
-    .tl-year { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.3rem; }
-    .tl-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
-    .tl-org { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.6rem; font-family: 'Space Mono', monospace; }
-    .tl-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
-    .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 3rem; }
-    .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; }
-    .cert-icon { font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .cert-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
-    .cert-org { font-size: 0.75rem; color: var(--muted); font-family: 'Space Mono', monospace; }
-
-    .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
-    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.4rem; display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); transition: all .2s; }
-    .contact-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .contact-icon { font-size: 1.3rem; }
-    .contact-label { font-size: 0.7rem; color: var(--muted); font-family: 'Space Mono', monospace; margin-bottom: 0.2rem; }
-    .contact-value { font-size: 0.82rem; color: var(--text); }
-    .contact-card:hover .contact-value { color: var(--accent); }
-
-    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 8vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    footer p { color: var(--muted); font-size: 0.78rem; font-family: 'Space Mono', monospace; }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.78rem; transition: color .2s; }
-    .footer-links a:hover { color: var(--accent); }
-
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .hero > * { animation: fadeUp .5s ease forwards; opacity: 0; }
-    .hero > *:nth-child(1){animation-delay:.1s} .hero > *:nth-child(2){animation-delay:.2s}
-    .hero > *:nth-child(3){animation-delay:.3s} .hero > *:nth-child(4){animation-delay:.35s}
-    .hero > *:nth-child(5){animation-delay:.4s} .hero > *:nth-child(6){animation-delay:.45s}
-
-    @media(max-width:768px){
-      .sobre-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 1.5rem; }
-      .nav-links { display: none; }
-      nav { gap: 1rem; }
-      .lang-switch { min-width: 110px; }
-      .lang-options { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-
-<div id="languageModal" class="lang-modal">
-  <div class="lang-modal-card">
-    <div class="lang-modal-title" data-i18n="modal.title">Escolha seu idioma</div>
-    <div class="lang-modal-sub" data-i18n="modal.subtitle">Selecione a linguagem que você prefere para navegar pelo portfólio.</div>
-    <div class="lang-options">
-      <button class="lang-btn" type="button" data-lang="pt">
-        <span class="lang-flag">🇧🇷</span>
-        <span class="lang-name">Português</span>
-      </button>
-      <button class="lang-btn" type="button" data-lang="en">
-        <span class="lang-flag">🇺🇸</span>
-        <span class="lang-name">English</span>
-      </button>
-      <button class="lang-btn" type="button" data-lang="es">
-        <span class="lang-flag">🇪🇸</span>
-        <span class="lang-name">Español</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<nav>
-  <div class="logo">J0aoPFC<span>.github.io</span></div>
-  <div style="display:flex; align-items:center;">
-    <div class="nav-links">
-      <a href="#sobre" data-i18n="nav.about">Sobre</a>
-      <a href="#habilidades" data-i18n="nav.skills">Habilidades</a>
-      <a href="#projetos" data-i18n="nav.projects">Projetos</a>
-      <a href="#experiencia" data-i18n="nav.experience">Experiência</a>
-      <a href="#contato" data-i18n="nav.contact">Contato</a>
-    </div>
-    <div class="lang-switch">
-      <select id="languageSelect" aria-label="Idioma">
-        <option value="pt">🇧🇷 PT</option>
-        <option value="en">🇺🇸 EN</option>
-        <option value="es">🇪🇸 ES</option>
-      </select>
-    </div>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-tag" data-i18n="hero.tag">Engenharia de Software · UniCEUB · Brasília, DF</div>
-  <h1>João Pedro<br/><span class="hl">Fialho Campos</span></h1>
-  <p class="hero-sub" data-i18n="hero.subtitle">Técnico de NOC N1 no BRB · 19 anos</p>
-  <p class="hero-desc" data-i18n="hero.description">Estudante de Engenharia de Software com experiência prática no mercado financeiro. Buscando crescimento profissional unindo graduação à experiência no BRB.</p>
-  <div class="btn-group">
-    <a href="https://github.com/J0aoPFC" class="btn btn-primary" target="_blank" data-i18n="hero.githubBtn">Ver GitHub</a>
-    <a href="https://linkedin.com/in/joaopedrofialho" class="btn btn-ghost" target="_blank" data-i18n="hero.linkedinBtn">LinkedIn</a>
-    <a href="#contato" class="btn btn-ghost" data-i18n="hero.contactBtn">Contato</a>
-  </div>
-  <div class="hero-stats">
-    <div><div class="hstat-n">5+</div><div class="hstat-l" data-i18n="hero.stats.projects">Projetos</div></div>
-    <div><div class="hstat-n">6+</div><div class="hstat-l" data-i18n="hero.stats.technologies">Tecnologias</div></div>
-    <div><div class="hstat-n">2029</div><div class="hstat-l" data-i18n="hero.stats.graduation">Graduação</div></div>
-  </div>
-</section>
-
-<section id="sobre" style="background: var(--surface);">
-  <div class="sec-label" data-i18n="about.label">// 01. Sobre</div>
-  <h2 class="sec-title" data-i18n="about.title">Sobre Mim</h2>
-  <div class="sobre-grid">
-    <div class="sobre-text">
-      <div class="avatar">JP</div>
-      <p data-i18n="about.text1">Estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no BRB. Com bom desempenho acadêmico e grande disposição para novos aprendizados, busco crescimento profissional combinando graduação e experiência prática.</p>
-      <p data-i18n="about.text2">Minha trajetória combina fundamentos de TI, monitoramento de redes e desenvolvimento de soluções com foco em organização, melhoria contínua e atuação em ambientes tecnológicos.</p>
-      <div class="info-list">
-        <div class="info-item"><div class="info-dot"></div><span data-i18n="about.info.uniceub">UniCEUB · Brasília, DF</span></div>
-        <div class="info-item"><div class="info-dot"></div><span data-i18n="about.info.job">Técnico de NOC N1 — BRB</span></div>
-        <div class="info-item"><div class="info-dot"></div><span data-i18n="about.info.age">19 anos</span></div>
-        <div class="info-item"><div class="info-dot"></div><a href="mailto:jpedro126ps4@gmail.com">jpedro126ps4@gmail.com</a></div>
-        <div class="info-item"><div class="info-dot"></div><a href="https://linkedin.com/in/joaopedrofialho" target="_blank">linkedin.com/in/joaopedrofialho</a></div>
-      </div>
-    </div>
-    <div class="sobre-right">
-      <div>
-        <div class="skill-group-title" data-i18n="about.interestsTitle">Áreas de Interesse</div>
-        <div class="area-tags">
-          <span class="area-tag active" data-i18n="about.tags.web">Desenvolvimento Web</span>
-          <span class="area-tag active" data-i18n="about.tags.ai">IA & ML</span>
-          <span class="area-tag" data-i18n="about.tags.cloud">Cloud</span>
-          <span class="area-tag" data-i18n="about.tags.security">Segurança</span>
-          <span class="area-tag" data-i18n="about.tags.banking">Sistemas Bancários</span>
-          <span class="area-tag" data-i18n="about.tags.pojo">POO</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="habilidades">
-  <div class="sec-label" data-i18n="skills.label">// 02. Habilidades</div>
-  <h2 class="sec-title" data-i18n="skills.title">Habilidades Técnicas</h2>
-  <div class="skills-grid">
-    <div>
-      <div class="skill-group-title" data-i18n="skills.languagesTitle">Linguagens & Tecnologias</div>
-      <div class="skill-bar-row">
-        <div class="skill-bar-label"><span class="skill-bar-name">Java</span><span class="skill-bar-pct">40%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:40%"></div></div>
-      </div>
-      <div class="skill-bar-row">
-        <div class="skill-bar-label"><span class="skill-bar-name">HTML / CSS</span><span class="skill-bar-pct">30%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:30%"></div></div>
-      </div>
-      <div class="skill-bar-row">
-        <div class="skill-bar-label"><span class="skill-bar-name">Python</span><span class="skill-bar-pct">20%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:20%"></div></div>
-      </div>
-      <div class="skill-bar-row">
-        <div class="skill-bar-label"><span class="skill-bar-name">Git & GitHub</span><span class="skill-bar-pct">35%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:35%"></div></div>
-      </div>
-      <div class="skill-bar-row">
-        <div class="skill-bar-label"><span class="skill-bar-name">Zabbix & Grafana</span><span class="skill-bar-pct">50%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:50%"></div></div>
-      </div>
-      <div class="skill-bar-row">
-        <div class="skill-bar-label"><span class="skill-bar-name">ITIL</span><span class="skill-bar-pct">50%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:50%"></div></div>
-      </div>
-      <div class="skill-bar-row">
-        <div class="skill-bar-label"><span class="skill-bar-name">Monitoramento de Redes</span><span class="skill-bar-pct">50%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:50%"></div></div>
-      </div>
-      <div class="skill-bar-row">
-        <div class="skill-bar-label"><span class="skill-bar-name">Pacote Office</span><span class="skill-bar-pct">80%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
-      </div>
-    </div>
-    <div>
-      <div class="skill-group-title" data-i18n="skills.toolsTitle">Ferramentas</div>
-      <div class="tools-grid" style="margin-bottom:1.5rem">
-        <span class="tool-tag">IntelliJ IDEA</span>
-        <span class="tool-tag">VS Code</span>
-        <span class="tool-tag">Git & GitHub</span>
-        <span class="tool-tag">Windows / Linux</span>
-        <span class="tool-tag">Word / Excel</span>
-        <span class="tool-tag">PowerPoint</span>
-        <span class="tool-tag">Lógica de Prog.</span>
-        <span class="tool-tag">POO (Java)</span>
-        <span class="tool-tag">Algoritmos</span>
-      </div>
-      <div class="skill-group-title" data-i18n="skills.softTitle">Soft Skills</div>
-      <div class="soft-list">
-        <div class="soft-item" data-i18n="skills.soft1">Aprendizado rápido</div>
-        <div class="soft-item" data-i18n="skills.soft2">Trabalho em equipe</div>
-        <div class="soft-item" data-i18n="skills.soft3">Comunicação assertiva</div>
-        <div class="soft-item" data-i18n="skills.soft4">Proatividade</div>
-        <div class="soft-item" data-i18n="skills.soft5">Organização</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="projetos" style="background: var(--surface);">
-  <div class="sec-label" data-i18n="projects.label">// 03. Projetos</div>
-  <h2 class="sec-title" data-i18n="projects.title">Repositório</h2>
-  <div class="explorer">
-    <div class="explorer-header">
-      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-      <span style="margin-left:0.5rem">J0aoPFC.github.io</span>
-    </div>
-    <div class="folder-row" onclick="toggleFolder(this)">
-      <span class="chevron">▶</span>
-      <span style="font-size:1.1rem">📁</span>
-      <span class="folder-name">JAVA</span>
-      <span class="folder-count">9 arquivos</span>
-    </div>
-    <div class="files-list">
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank"><div class="file-dot"></div><span class="file-label">CalculaDobro</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank"><div class="file-dot"></div><span class="file-label">CalculoHoras</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/EscreveVariaveis.java" target="_blank"><div class="file-dot"></div><span class="file-label">EscreveVariaveis</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/HelloWorld.java" target="_blank"><div class="file-dot"></div><span class="file-label">HelloWorld</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Jantar.java" target="_blank"><div class="file-dot"></div><span class="file-label">Jantar</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/JantarPizza.java" target="_blank"><div class="file-dot"></div><span class="file-label">JantarPizza</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank"><div class="file-dot"></div><span class="file-label">LanHouse</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LeituraEscrita.java" target="_blank"><div class="file-dot"></div><span class="file-label">LeituraEscrita</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
-      <a class="file-row" href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank"><div class="file-dot"></div><span class="file-label">Locadora</span><span class="file-ext-badge">.java</span><span class="file-arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
-<section id="experiencia">
-  <div class="sec-label" data-i18n="experience.label">// 04. Trajetória</div>
-  <h2 class="sec-title" data-i18n="experience.title">Experiências & Formação</h2>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">jul de 2026 – atual</div>
-      <div class="tl-title" data-i18n="experience.job1Title">Técnico de NOC N1</div>
-      <div class="tl-org">Banco de Brasília (BRB Serviços)</div>
-      <div class="tl-desc" data-i18n="experience.job1Desc">Gestão de alertas via Zabbix, monitorando infraestrutura e redes em tempo real. Reconhecimento e triagem inicial de falhas, contribuindo para redução no tempo de resposta.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">abr de 2026 – jun de 2026</div>
-      <div class="tl-title" data-i18n="experience.job2Title">Aprendiz – Suporte de TI</div>
-      <div class="tl-org">Banco de Brasília (BRB Serviços)</div>
-      <div class="tl-desc" data-i18n="experience.job2Desc">Acompanhamento de Acordos de Nível de Serviço (SLA), monitorando prazos e qualidade de entrega. Contribuição para manter os indicadores de atendimento dentro da meta.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2026 – 2029 (em curso)</div>
-      <div class="tl-title" data-i18n="experience.edu1Title">Bacharelado em Engenharia de Software</div>
-      <div class="tl-org">UniCEUB – Brasília, DF</div>
-      <div class="tl-desc"></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2023 – 2025</div>
-      <div class="tl-title" data-i18n="experience.edu2Title">Ensino Médio Completo</div>
-      <div class="tl-org">Colégio do Sol</div>
-      <div class="tl-desc"></div>
-    </div>
-  </div>
-
-  <div class="certs-grid">
-    <div class="cert-card"><div class="cert-icon">🎓</div><div class="cert-title" data-i18n="certs.cert1">Monitoramento Avançado de Rede com Zabbix + Grafana</div><div class="cert-org">Udemy · 2025</div></div>
-    <div class="cert-card"><div class="cert-icon">☕</div><div class="cert-title" data-i18n="certs.cert2">Operador de Micro Avançado – Pacote Office</div><div class="cert-org">Versátil · 2024</div></div>
-  </div>
-</section>
-
-<section id="contato" style="background: var(--surface);">
-  <div class="sec-label" data-i18n="contact.label">// 05. Contato</div>
-  <h2 class="sec-title" data-i18n="contact.title">Vamos nos Conectar?</h2>
-  <div class="contact-grid">
-    <a class="contact-card" href="mailto:jpedro126ps4@gmail.com">
-      <span class="contact-icon">✉️</span>
-      <div><div class="contact-label" data-i18n="contact.emailLabel">E-mail</div><div class="contact-value">jpedro126ps4@gmail.com</div></div>
-    </a>
-    <a class="contact-card" href="https://linkedin.com/in/joaopedrofialho" target="_blank">
-      <span class="contact-icon">🔗</span>
-      <div><div class="contact-label" data-i18n="contact.linkedinLabel">LinkedIn</div><div class="contact-value">joaopedrofialho</div></div>
-    </a>
-    <a class="contact-card" href="https://github.com/J0aoPFC" target="_blank">
-      <span class="contact-icon">⌨️</span>
-      <div><div class="contact-label" data-i18n="contact.githubLabel">GitHub</div><div class="contact-value">J0aoPFC</div></div>
-    </a>
-    <a class="contact-card" href="tel:+5561995816421">
-      <span class="contact-icon">📱</span>
-      <div><div class="contact-label" data-i18n="contact.phoneLabel">Telefone</div><div class="contact-value">(61) 99581-6421</div></div>
-    </a>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 · João Pedro Fialho Campos · J0aoPFC.github.io</p>
-  <div class="footer-links">
-    <a href="https://github.com/J0aoPFC" target="_blank" data-i18n="footer.github">GitHub</a>
-    <a href="https://linkedin.com/in/joaopedrofialho" target="_blank" data-i18n="footer.linkedin">LinkedIn</a>
-  </div>
-</footer>
-
-<script>
-  const translations = {
-    pt: {
-      modal: { title: 'Escolha seu idioma', subtitle: 'Selecione a linguagem que você prefere para navegar pelo portfólio.' },
-      nav: { about: 'Sobre', skills: 'Habilidades', projects: 'Projetos', experience: 'Experiência', contact: 'Contato' },
-      hero: {
-        tag: 'Engenharia de Software · UniCEUB · Brasília, DF',
-        subtitle: 'Técnico de NOC N1 no BRB · 19 anos',
-        description: 'Estudante de Engenharia de Software com experiência prática no mercado financeiro. Buscando crescimento profissional unindo graduação à experiência no BRB.',
-        githubBtn: 'Ver GitHub',
-        linkedinBtn: 'LinkedIn',
-        contactBtn: 'Contato',
-        'stats.projects': 'Projetos',
-        'stats.technologies': 'Tecnologias',
-        'stats.graduation': 'Graduação'
-      },
-      about: {
-        label: '// 01. Sobre',
-        title: 'Sobre Mim',
-        text1: 'Estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no BRB. Com bom desempenho acadêmico e grande disposição para novos aprendizados, busco crescimento profissional combinando graduação e experiência prática.',
-        text2: 'Minha trajetória combina fundamentos de TI, monitoramento de redes e desenvolvimento de soluções com foco em organização, melhoria contínua e atuação em ambientes tecnológicos.',
-        'info.uniceub': 'UniCEUB · Brasília, DF',
-        'info.job': 'Técnico de NOC N1 — BRB',
-        'info.age': '19 anos',
-        interestsTitle: 'Áreas de Interesse',
-        'tags.web': 'Desenvolvimento Web',
-        'tags.ai': 'IA & ML',
-        'tags.cloud': 'Cloud',
-        'tags.security': 'Segurança',
-        'tags.banking': 'Sistemas Bancários',
-        'tags.pojo': 'POO'
-      },
-      skills: {
-        label: '// 02. Habilidades',
-        title: 'Habilidades Técnicas',
-        languagesTitle: 'Linguagens & Tecnologias',
-        toolsTitle: 'Ferramentas',
-        softTitle: 'Soft Skills',
-        soft1: 'Aprendizado rápido',
-        soft2: 'Trabalho em equipe',
-        soft3: 'Comunicação assertiva',
-        soft4: 'Proatividade',
-        soft5: 'Organização'
-      },
-      projects: { label: '// 03. Projetos', title: 'Repositório' },
-      experience: {
-        label: '// 04. Trajetória',
-        title: 'Experiências & Formação',
-        job1Title: 'Técnico de NOC N1',
-        job1Desc: 'Gestão de alertas via Zabbix, monitorando infraestrutura e redes em tempo real. Reconhecimento e triagem inicial de falhas, contribuindo para redução no tempo de resposta.',
-        job2Title: 'Aprendiz – Suporte de TI',
-        job2Desc: 'Acompanhamento de Acordos de Nível de Serviço (SLA), monitorando prazos e qualidade de entrega. Contribuição para manter os indicadores de atendimento dentro da meta.',
-        edu1Title: 'Bacharelado em Engenharia de Software',
-        edu2Title: 'Ensino Médio Completo'
-      },
-      certs: {
-        cert1: 'Monitoramento Avançado de Rede com Zabbix + Grafana',
-        cert2: 'Operador de Micro Avançado – Pacote Office'
-      },
-      contact: {
-        label: '// 05. Contato',
-        title: 'Vamos nos Conectar?',
-        emailLabel: 'E-mail',
-        linkedinLabel: 'LinkedIn',
-        githubLabel: 'GitHub',
-        phoneLabel: 'Telefone'
-      },
-      footer: { github: 'GitHub', linkedin: 'LinkedIn' }
-    },
-    en: {
-      modal: { title: 'Choose your language', subtitle: 'Select the language you prefer to browse this portfolio.' },
-      nav: { about: 'About', skills: 'Skills', projects: 'Projects', experience: 'Experience', contact: 'Contact' },
-      hero: {
-        tag: 'Software Engineering · UniCEUB · Brasília, DF',
-        subtitle: 'NOC N1 Technician at BRB · 19 years old',
-        description: 'Software Engineering student with practical experience in the financial market. Looking for professional growth by combining graduation with experience at BRB.',
-        githubBtn: 'View GitHub',
-        linkedinBtn: 'LinkedIn',
-        contactBtn: 'Contact',
-        'stats.projects': 'Projects',
-        'stats.technologies': 'Technologies',
-        'stats.graduation': 'Graduation'
-      },
-      about: {
-        label: '// 01. About',
-        title: 'About Me',
-        text1: 'Software Engineering student at UniCEUB and NOC N1 technician at BRB. With strong academic performance and a great willingness to learn, I seek professional growth by combining education and practical experience.',
-        text2: 'My path combines IT fundamentals, network monitoring and solution development with a focus on organization, continuous improvement and work in technological environments.',
-        'info.uniceub': 'UniCEUB · Brasília, DF',
-        'info.job': 'NOC N1 Technician — BRB',
-        'info.age': '19 years old',
-        interestsTitle: 'Areas of Interest',
-        'tags.web': 'Web Development',
-        'tags.ai': 'AI & ML',
-        'tags.cloud': 'Cloud',
-        'tags.security': 'Security',
-        'tags.banking': 'Banking Systems',
-        'tags.pojo': 'OOP'
-      },
-      skills: {
-        label: '// 02. Skills',
-        title: 'Technical Skills',
-        languagesTitle: 'Languages & Technologies',
-        toolsTitle: 'Tools',
-        softTitle: 'Soft Skills',
-        soft1: 'Fast learner',
-        soft2: 'Teamwork',
-        soft3: 'Assertive communication',
-        soft4: 'Proactivity',
-        soft5: 'Organization'
-      },
-      projects: { label: '// 03. Projects', title: 'Repository' },
-      experience: {
-        label: '// 04. Journey',
-        title: 'Experience & Education',
-        job1Title: 'NOC N1 Technician',
-        job1Desc: 'Alert management through Zabbix, monitoring infrastructure and networks in real time. Initial recognition and triage of failures, contributing to reduced response time.',
-        job2Title: 'Trainee – IT Support',
-        job2Desc: 'Monitoring Service Level Agreements (SLAs), tracking deadlines and delivery quality. Contributing to keep service indicators within target.',
-        edu1Title: 'Bachelor of Software Engineering',
-        edu2Title: 'High School Diploma'
-      },
-      certs: {
-        cert1: 'Advanced Network Monitoring with Zabbix + Grafana',
-        cert2: 'Advanced Micro Operator – Office Package'
-      },
-      contact: {
-        label: '// 05. Contact',
-        title: 'Let’s Connect?',
-        emailLabel: 'E-mail',
-        linkedinLabel: 'LinkedIn',
-        githubLabel: 'GitHub',
-        phoneLabel: 'Phone'
-      },
-      footer: { github: 'GitHub', linkedin: 'LinkedIn' }
-    },
-    es: {
-      modal: { title: 'Elige tu idioma', subtitle: 'Selecciona el idioma que prefieres para navegar por el portafolio.' },
-      nav: { about: 'Sobre', skills: 'Habilidades', projects: 'Proyectos', experience: 'Experiencia', contact: 'Contacto' },
-      hero: {
-        tag: 'Ingeniería de Software · UniCEUB · Brasília, DF',
-        subtitle: 'Técnico NOC N1 en BRB · 19 años',
-        description: 'Estudiante de Ingeniería de Software con experiencia práctica en el mercado financiero. Buscando crecimiento profesional combinando la graduación con la experiencia en BRB.',
-        githubBtn: 'Ver GitHub',
-        linkedinBtn: 'LinkedIn',
-        contactBtn: 'Contacto',
-        'stats.projects': 'Proyectos',
-        'stats.technologies': 'Tecnologías',
-        'stats.graduation': 'Graduación'
-      },
-      about: {
-        label: '// 01. Sobre',
-        title: 'Sobre Mí',
-        text1: 'Estudiante de Ingeniería de Software en UniCEUB y Técnico NOC N1 en BRB. Con buen desempeño académico y gran disposición para aprender, busco crecimiento profesional combinando educación y experiencia práctica.',
-        text2: 'Mi trayectoria combina fundamentos de TI, monitoreo de redes y desarrollo de soluciones con enfoque en organización, mejora continua y trabajo en entornos tecnológicos.',
-        'info.uniceub': 'UniCEUB · Brasília, DF',
-        'info.job': 'Técnico NOC N1 — BRB',
-        'info.age': '19 años',
-        interestsTitle: 'Áreas de Interés',
-        'tags.web': 'Desarrollo Web',
-        'tags.ai': 'IA & ML',
-        'tags.cloud': 'Cloud',
-        'tags.security': 'Seguridad',
-        'tags.banking': 'Sistemas Bancarios',
-        'tags.pojo': 'POO'
-      },
-      skills: {
-        label: '// 02. Habilidades',
-        title: 'Habilidades Técnicas',
-        languagesTitle: 'Lenguajes & Tecnologías',
-        toolsTitle: 'Herramientas',
-        softTitle: 'Habilidades Blandas',
-        soft1: 'Aprendizaje rápido',
-        soft2: 'Trabajo en equipo',
-        soft3: 'Comunicación asertiva',
-        soft4: 'Proactividad',
-        soft5: 'Organización'
-      },
-      projects: { label: '// 03. Proyectos', title: 'Repositorio' },
-      experience: {
-        label: '// 04. Trayectoria',
-        title: 'Experiencia & Formación',
-        job1Title: 'Técnico NOC N1',
-        job1Desc: 'Gestión de alertas a través de Zabbix, monitorizando infraestructura y redes en tiempo real. Reconocimiento y triage inicial de fallas, contribuyendo a reducir el tiempo de respuesta.',
-        job2Title: 'Aprendiz – Soporte de TI',
-        job2Desc: 'Seguimiento de Acuerdos de Nivel de Servicio (SLA), monitoreando plazos y calidad de entrega. Contribución para mantener los indicadores de atención dentro de la meta.',
-        edu1Title: 'Licenciatura en Ingeniería de Software',
-        edu2Title: 'Educación Media Completa'
-      },
-      certs: {
-        cert1: 'Monitoreo Avanzado de Red con Zabbix + Grafana',
-        cert2: 'Operador de Micro Avanzado – Paquete Office'
-      },
-      contact: {
-        label: '// 05. Contacto',
-        title: '¿Conectamos?',
-        emailLabel: 'Correo',
-        linkedinLabel: 'LinkedIn',
-        githubLabel: 'GitHub',
-        phoneLabel: 'Teléfono'
-      },
-      footer: { github: 'GitHub', linkedin: 'LinkedIn' }
-    }
-  };
-
-  function applyLanguage(language) {
-    const lang = translations[language] || translations.pt;
-    document.documentElement.lang = language === 'pt' ? 'pt-BR' : language === 'en' ? 'en-US' : 'es-ES';
-
-    document.querySelectorAll('[data-i18n]').forEach((element) => {
-      const key = element.dataset.i18n;
-      const value = key.split('.').reduce((obj, part) => obj && obj[part], lang);
-      if (typeof value === 'string') element.textContent = value;
-    });
-
-    const selector = document.getElementById('languageSelect');
-    if (selector) selector.value = language;
-
-    const modal = document.getElementById('languageModal');
-    if (modal) modal.classList.add('hidden');
+const translations = {
+  pt: {
+    title: "Escolha seu idioma",
+    subtitle: "Selecione a linguagem que você prefere para navegar na experiência."
+  },
+  en: {
+    title: "Choose your language",
+    subtitle: "Select the language you prefer to browse this experience."
+  },
+  es: {
+    title: "Elige tu idioma",
+    subtitle: "Selecciona el idioma que prefieres para navegar por la experiencia."
   }
+};
 
-  function openLanguageModal() {
-    const modal = document.getElementById('languageModal');
-    if (modal) modal.classList.remove('hidden');
-  }
+function setLanguage(lang) {
+  const selected = translations[lang] || translations.pt;
 
-  const selector = document.getElementById('languageSelect');
-  if (selector) {
-    selector.addEventListener('change', (event) => applyLanguage(event.target.value));
-  }
+  const title = document.querySelector(".language-card h2");
+  const text = document.querySelector(".language-card p");
 
-  document.querySelectorAll('.lang-btn').forEach((btn) => {
-    btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+  if (title) title.textContent = selected.title;
+  if (text) text.textContent = selected.subtitle;
+
+  if (languageButton) languageButton.textContent = lang.toUpperCase();
+
+  if (languageModal) languageModal.style.display = "flex";
+}
+
+document.querySelectorAll("[data-language]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const lang = button.dataset.language;
+    if (languageButton) languageButton.textContent = lang.toUpperCase();
+    if (languageModal) languageModal.style.display = "none";
   });
+});
 
-  setTimeout(() => openLanguageModal(), 150);
-  applyLanguage('pt');
+if (languageButton) {
+  languageButton.addEventListener("click", () => {
+    if (languageModal) languageModal.style.display = "flex";
+  });
+}
 
-  function toggleFolder(row) {
-    row.classList.toggle('open');
-    const list = row.nextElementSibling;
-    list.classList.toggle('open');
-    const icon = row.querySelector('span[style]');
-    if (icon) icon.textContent = list.classList.contains('open') ? '📂' : '📁';
-  }
-</script>
-</body>
-</html>
+if (languageModal) languageModal.style.display = "flex";
+if (languageButton) languageButton.textContent = "PT";
+
+// Sem persistência no localStorage para que o idioma seja escolhido toda vez.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

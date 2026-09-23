@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>João Pedro Fialho | Cyber Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="grid"></div>
+
+  <div id="languageModal" class="language-modal">
+    <div class="language-card">
+      <div class="badge">SYSTEM READY</div>
+      <h2>Escolha seu idioma</h2>
+      <p>Selecione a linguagem que desejar para navegar nesta experiência.</p>
+
+      <div class="language-options">
+        <button data-language="pt">🇧🇷 Português</button>
+        <button data-language="en">🇺🇸 English</button>
+        <button data-language="es">🇪🇸 Español</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="logo-wrap">
+      <span class="logo-mark">&lt;/&gt;</span>
+      <span class="logo-name">J0aoPFC</span>
+    </div>
+
+    <nav class="nav">
+      <a href="#sobre">Sobre</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#habilidades">Skills</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <button id="changeLanguage" class="lang-button">PT</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">// Software Engineer</span>
+        <h1>
+          João Pedro<br />
+          <span>Fialho Campos</span>
+        </h1>
+
+        <p class="subtitle">Técnico de NOC N1 no BRB · 19 anos</p>
+
+        <p class="description">
+          Estudante de Engenharia de Software com experiência prática em infraestrutura,
+          redes e suporte tecnológico. Busco evoluir combinando estudo, prática e
+          desenvolvimento de soluções com foco em tecnologia e inovação.
+        </p>
+
+        <div class="cta-row">
+          <a href="#projetos" class="primary-btn">Projetos</a>
+          <a href="https://linkedin.com/in/joaopedrofialho" target="_blank" class="ghost-btn">LinkedIn</a>
+        </div>
+
+        <div class="stats">
+          <div>
+            <strong>5+</strong>
+            <span>Projetos</span>
+          </div>
+          <div>
+            <strong>6+</strong>
+            <span>Tecnologias</span>
+          </div>
+          <div>
+            <strong>2029</strong>
+            <span>Graduação</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="console">
+        <div class="console-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="console-title">portfolio_system</span>
+        </div>
+
+        <div class="console-body">
+          <div class="line"><span class="var">const</span> profile = {</div>
+          <div class="line indent">name: <span class="string">"João Pedro Fialho"</span>,</div>
+          <div class="line indent">role: <span class="string">"NOC N1 Technician"</span>,</div>
+          <div class="line indent">stack: <span class="string">["Java", "Python", "Zabbix", "Git"]</span>,</div>
+          <div class="line indent">location: <span class="string">"Brasília, DF"</span>,</div>
+          <div class="line">};</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="section">
+      <div class="section-head">
+        <span class="section-num">// 01</span>
+        <h2>Sobre</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="avatar">JP</div>
+          <p>
+            Sou estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no Banco de Brasília.
+            Minha rotina envolve monitoramento de redes, alertas e suporte de infraestrutura.
+          </p>
+          <p>
+            Estou em constante evolução, com foco em tecnologia, lógica e desenvolvimento de soluções.
+            Busco oportunidades que me permitam crescer profissionalmente e aprofundar conhecimentos em software e sistemas.
+          </p>
+        </div>
+
+        <div class="pill-box">
+          <span>Java</span>
+          <span>Python</span>
+          <span>GitHub</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>Zabbix</span>
+          <span>Grafana</span>
+          <span>ITIL</span>
+          <span>POO</span>
+          <span>Monitoramento</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia" class="section">
+      <div class="section-head">
+        <span class="section-num">// 02</span>
+        <h2>Experiência</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2026 — atual</div>
+          <div class="timeline-card">
+            <h3>Técnico de NOC N1</h3>
+            <p class="company">Banco de Brasília (BRB Serviços)</p>
+            <p>Monitoramento de infraestrutura e redes em tempo real, gestão de alertas e triagem inicial de incidentes.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2026</div>
+          <div class="timeline-card">
+            <h3>Aprendiz — Suporte de TI</h3>
+            <p class="company">Banco de Brasília (BRB Serviços)</p>
+            <p>Acompanhamento de SLAs, indicadores de atendimento e suporte operacional em processos de TI.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2026 — 2029</div>
+          <div class="timeline-card">
+            <h3>Engenharia de Software</h3>
+            <p class="company">UniCEUB — Brasília, DF</p>
+            <p>Graduação em andamento com foco em lógica, programação, arquitetura de software e sistemas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="habilidades" class="section">
+      <div class="section-head">
+        <span class="section-num">// 03</span>
+        <h2>Habilidades</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3>Languages</h3>
+          <ul>
+            <li>Java</li>
+            <li>Python</li>
+            <li>HTML / CSS</li>
+            <li>SQL</li>
+          </ul>
+        </div>
+
+        <div class="skill-box">
+          <h3>Tools</h3>
+          <ul>
+            <li>Git & GitHub</li>
+            <li>Zabbix</li>
+            <li>Grafana</li>
+            <li>VS Code</li>
+          </ul>
+        </div>
+
+        <div class="skill-box">
+          <h3>Concepts</h3>
+          <ul>
+            <li>POO</li>
+            <li>Algoritmos</li>
+            <li>ITIL</li>
+            <li>Monitoramento</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" class="section">
+      <div class="section-head">
+        <span class="section-num">// 04</span>
+        <h2>Projetos</h2>
+      </div>
+
+      <div class="projects-grid">
+        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank" class="project-card">
+          <span class="project-tag">Java</span>
+          <h3>CalculaDobro</h3>
+          <p>Programa simples para entrada e cálculo de valores.</p>
+        </a>
+
+        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank" class="project-card">
+          <span class="project-tag">Java</span>
+          <h3>CalculoHoras</h3>
+          <p>Exercício de lógica para cálculo relacionado a horários.</p>
+        </a>
+
+        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank" class="project-card">
+          <span class="project-tag">Java</span>
+          <h3>LanHouse</h3>
+          <p>Aplicação com fluxo de cadastro e cálculo de uso.</p>
+        </a>
+
+        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank" class="project-card">
+          <span class="project-tag">Java</span>
+          <h3>Locadora</h3>
+          <p>Prática de lógica, condições e organização de informações.</p>
+        </a>
+      </div>
+
+      <div class="repo-link-wrap">
+        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io" target="_blank" class="repo-link">Ver repositório completo →</a>
+      </div>
+    </section>
+
+    <section id="contato" class="section">
+      <div class="section-head">
+        <span class="section-num">// 05</span>
+        <h2>Contato</h2>
+      </div>
+
+      <div class="contact-wrap">
+        <p>Estou aberto a novas oportunidades, projetos e colaborações em tecnologia.</p>
+
+        <div class="contact-links">
+          <a href="mailto:jpedro126ps4@gmail.com">jpedro126ps4@gmail.com</a>
+          <a href="https://github.com/J0aoPFC" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/joaopedrofialho" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 João Pedro Fialho</span>
+    <span>J0aoPFC.github.io</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
