@@ -15,6 +15,18 @@ const translations = {
   es: {
     title: "Elige tu idioma",
     subtitle: "Selecciona el idioma que prefieres para navegar por la experiencia."
+  },
+  fr: {
+    title: "Choisissez votre langue",
+    subtitle: "Sélectionnez la langue que vous préférez pour naviguer dans cette expérience."
+  },
+  de: {
+    title: "Sprache auswählen",
+    subtitle: "Wählen Sie die Sprache, die Sie für diese Erfahrung bevorzugen."
+  },
+  it: {
+    title: "Scegli la tua lingua",
+    subtitle: "Seleziona la lingua che preferisci per navigare in questa esperienza."
   }
 };
 
