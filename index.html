@@ -10,8 +10,9 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="grid"></div>
+  <a href="#top" class="skip-link">Pular para o conteúdo principal</a>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="grid" aria-hidden="true"></div>
 
   <div id="languageModal" class="language-modal" role="dialog" aria-modal="true" aria-labelledby="languageTitle">
     <div class="language-card">
@@ -31,16 +32,17 @@
 
   <header class="site-header">
     <a class="logo-wrap" href="#top" aria-label="Início">
-      <span class="logo-mark">&lt;/&gt;</span><span class="logo-name">J0aoPFC</span>
+      <span class="logo-mark" aria-hidden="true">&lt;/&gt;</span><span class="logo-name">J0aoPFC</span>
     </a>
-    <nav class="nav" aria-label="Navegação principal">
+    <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menu de navegação">☰</button>
+    <nav id="mainNav" class="nav" aria-label="Navegação principal">
       <a href="#sobre">Sobre</a>
       <a href="#experiencia">Experiência</a>
       <a href="#habilidades">Skills</a>
       <a href="#projetos">Projetos</a>
       <a href="#contato">Contato</a>
     </nav>
-    <button id="changeLanguage" class="lang-button" type="button">PT</button>
+    <button id="changeLanguage" class="lang-button" type="button" aria-label="Selecionar idioma do site (atual: Português)">PT</button>
   </header>
 
   <main id="top" class="container">
@@ -52,7 +54,7 @@
         <p class="description">Estudante de Engenharia de Software com experiência prática em infraestrutura, redes e suporte tecnológico. Busco evoluir combinando estudo, prática e desenvolvimento de soluções com foco em tecnologia e inovação.</p>
         <div class="cta-row">
           <a href="#projetos" class="primary-btn">Projetos</a>
-          <a href="https://linkedin.com/in/joaopedrofialho" target="_blank" rel="noopener noreferrer" class="ghost-btn">LinkedIn</a>
+          <a href="https://linkedin.com/in/joaopedrofialho" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova aba)" class="ghost-btn">LinkedIn</a>
         </div>
         <div class="stats">
           <div><strong>5+</strong><span>Projetos</span></div>
@@ -61,7 +63,7 @@
         </div>
       </div>
       <div class="console" aria-label="Resumo técnico">
-        <div class="console-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="console-title">portfolio_system</span></div>
+        <div class="console-header"><span class="dot red" aria-hidden="true"></span><span class="dot yellow" aria-hidden="true"></span><span class="dot green" aria-hidden="true"></span><span class="console-title">portfolio_system</span></div>
         <div class="console-body">
           <div class="line"><span class="var">const</span> profile = {</div>
           <div class="line indent">name: <span class="string">"João Pedro Fialho"</span>,</div>
@@ -76,7 +78,7 @@
     <section id="sobre" class="section">
       <div class="section-head"><span class="section-num">// 01</span><h2>Sobre</h2></div>
       <div class="about-grid">
-        <div class="about-card"><div class="avatar">JP</div><p>Sou estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no Banco de Brasília. Minha rotina envolve monitoramento de redes, alertas e suporte de infraestrutura.</p><p>Estou em constante evolução, com foco em tecnologia, lógica e desenvolvimento de soluções. Busco oportunidades que me permitam crescer profissionalmente e aprofundar conhecimentos em software e sistemas.</p></div>
+        <div class="about-card"><div class="avatar" aria-hidden="true">JP</div><p>Sou estudante de Engenharia de Software no UniCEUB e Técnico de NOC N1 no Banco de Brasília. Minha rotina envolve monitoramento de redes, alertas e suporte de infraestrutura.</p><p>Estou em constante evolução, com foco em tecnologia, lógica e desenvolvimento de soluções. Busco oportunidades que me permitam crescer profissionalmente e aprofundar conhecimentos em software e sistemas.</p></div>
         <div class="pill-box"><span>Java</span><span>Python</span><span>GitHub</span><span>HTML</span><span>CSS</span><span>Zabbix</span><span>Grafana</span><span>ITIL</span><span>POO</span><span>Monitoramento</span></div>
       </div>
     </section>
@@ -102,17 +104,17 @@
     <section id="projetos" class="section">
       <div class="section-head"><span class="section-num">// 04</span><h2>Projetos</h2></div>
       <div class="projects-grid">
-        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank" rel="noopener noreferrer" class="project-card"><span class="project-tag">Java</span><h3>CalculaDobro</h3><p>Programa simples para entrada e cálculo de valores.</p></a>
-        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank" rel="noopener noreferrer" class="project-card"><span class="project-tag">Java</span><h3>CalculoHoras</h3><p>Exercício de lógica para cálculo relacionado a horários.</p></a>
-        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank" rel="noopener noreferrer" class="project-card"><span class="project-tag">Java</span><h3>LanHouse</h3><p>Aplicação com fluxo de cadastro e cálculo de uso.</p></a>
-        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank" rel="noopener noreferrer" class="project-card"><span class="project-tag">Java</span><h3>Locadora</h3><p>Prática de lógica, condições e organização de informações.</p></a>
+        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculaDobro.java" target="_blank" rel="noopener noreferrer" aria-label="Projeto CalculaDobro (abre em nova aba)" class="project-card"><span class="project-tag">Java</span><h3>CalculaDobro</h3><p>Programa simples para entrada e cálculo de valores.</p></a>
+        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/CalculoHoras.java" target="_blank" rel="noopener noreferrer" aria-label="Projeto CalculoHoras (abre em nova aba)" class="project-card"><span class="project-tag">Java</span><h3>CalculoHoras</h3><p>Exercício de lógica para cálculo relacionado a horários.</p></a>
+        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/LanHouse.java" target="_blank" rel="noopener noreferrer" aria-label="Projeto LanHouse (abre em nova aba)" class="project-card"><span class="project-tag">Java</span><h3>LanHouse</h3><p>Aplicação com fluxo de cadastro e cálculo de uso.</p></a>
+        <a href="https://github.com/J0aoPFC/J0aoPFC.github.io/blob/main/Locadora.java" target="_blank" rel="noopener noreferrer" aria-label="Projeto Locadora (abre em nova aba)" class="project-card"><span class="project-tag">Java</span><h3>Locadora</h3><p>Prática de lógica, condições e organização de informações.</p></a>
       </div>
-      <div class="repo-link-wrap"><a href="https://github.com/J0aoPFC/J0aoPFC.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">Ver repositório completo →</a></div>
+      <div class="repo-link-wrap"><a href="https://github.com/J0aoPFC/J0aoPFC.github.io" target="_blank" rel="noopener noreferrer" aria-label="Ver repositório completo (abre em nova aba)" class="repo-link">Ver repositório completo →</a></div>
     </section>
 
     <section id="contato" class="section">
       <div class="section-head"><span class="section-num">// 05</span><h2>Contato</h2></div>
-      <div class="contact-wrap"><p>Estou aberto a novas oportunidades, projetos e colaborações em tecnologia.</p><div class="contact-links"><a href="mailto:jpedro126ps4@gmail.com">jpedro126ps4@gmail.com</a><a href="https://github.com/J0aoPFC" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://linkedin.com/in/joaopedrofialho" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></div>
+      <div class="contact-wrap"><p>Estou aberto a novas oportunidades, projetos e colaborações em tecnologia.</p><div class="contact-links"><a href="mailto:jpedro126ps4@gmail.com">jpedro126ps4@gmail.com</a><a href="https://github.com/J0aoPFC" target="_blank" rel="noopener noreferrer" aria-label="GitHub (abre em nova aba)">GitHub</a><a href="https://linkedin.com/in/joaopedrofialho" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (abre em nova aba)">LinkedIn</a></div></div>
     </section>
   </main>
 

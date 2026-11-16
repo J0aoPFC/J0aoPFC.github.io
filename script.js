@@ -3,6 +3,8 @@ const languageButton = document.getElementById("changeLanguage");
 const languageTitle = document.getElementById("languageTitle");
 const languageSubtitle = document.getElementById("languageSubtitle");
 const languageOptions = document.querySelector(".language-options, .lang-options");
+const mobileMenuButton = document.getElementById("mobileMenuBtn");
+const mainNavigation = document.getElementById("mainNav");
 
 const translations = {
   pt: {
@@ -307,7 +309,16 @@ function applyLanguage(lang) {
 
   if (languageTitle) languageTitle.textContent = selected.modalTitle;
   if (languageSubtitle) languageSubtitle.textContent = selected.modalSubtitle;
-  if (languageButton) languageButton.textContent = lang.toUpperCase();
+  if (languageButton) {
+    languageButton.textContent = lang.toUpperCase();
+    languageButton.setAttribute("aria-label", `Alterar idioma (atual: ${selected.label})`);
+  }
+
+  document.querySelectorAll("[data-language], [data-lang]").forEach((button) => {
+    const languageCode = button.dataset.language || button.dataset.lang;
+    const language = translations[languageCode];
+    if (language) button.setAttribute("aria-label", `Selecionar ${language.label}`);
+  });
 }
 
 function ensureLanguageButtons() {
@@ -325,11 +336,49 @@ function ensureLanguageButtons() {
 }
 
 function openLanguageModal() {
-  if (languageModal) languageModal.style.display = "flex";
+  if (!languageModal) return;
+  languageModal.style.display = "flex";
+  const firstLanguageButton = languageModal.querySelector("[data-language], [data-lang]");
+  if (firstLanguageButton) firstLanguageButton.focus();
 }
 
 function closeLanguageModal() {
-  if (languageModal) languageModal.style.display = "none";
+  if (!languageModal) return;
+  languageModal.style.display = "none";
+  if (languageButton) languageButton.focus();
+}
+
+if (languageModal) {
+  languageModal.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" || event.key === "Esc") {
+      closeLanguageModal();
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+    const focusableElements = [...languageModal.querySelectorAll(
+      'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )];
+
+    if (focusableElements.length === 0) {
+      event.preventDefault();
+      return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  });
+
+  languageModal.addEventListener("click", (event) => {
+    if (event.target === languageModal) closeLanguageModal();
+  });
 }
 
 // Monta os botões de idioma dinamicamente (usa flag + label de "translations")
@@ -346,6 +395,26 @@ document.querySelectorAll("[data-language], [data-lang]").forEach((button) => {
 
 if (languageButton) {
   languageButton.addEventListener("click", openLanguageModal);
+}
+
+if (mobileMenuButton && mainNavigation) {
+  mobileMenuButton.addEventListener("click", () => {
+    const isExpanded = mobileMenuButton.getAttribute("aria-expanded") === "true";
+    mobileMenuButton.setAttribute("aria-expanded", String(!isExpanded));
+    mobileMenuButton.setAttribute(
+      "aria-label",
+      isExpanded ? "Abrir menu de navegação" : "Fechar menu de navegação"
+    );
+    mainNavigation.classList.toggle("open", !isExpanded);
+  });
+
+  mainNavigation.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mainNavigation.classList.remove("open");
+      mobileMenuButton.setAttribute("aria-expanded", "false");
+      mobileMenuButton.setAttribute("aria-label", "Abrir menu de navegação");
+    });
+  });
 }
 
 // Idioma padrão inicial + modal aberto na visita
