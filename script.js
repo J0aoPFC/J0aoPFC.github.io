@@ -37,6 +37,7 @@ const translations = {
     conceptsKeywords: ["POO", "Algoritmos", "ITIL", "Monitoramento"],
     projectsTitle: "Projetos",
     projectDescriptions: [
+      "Plataforma imobiliária de alto padrão para Brasília-DF com acessibilidade WCAG 2.1, filtros e carrossel.",
       "Programa simples para entrada e cálculo de valores.",
       "Exercício de lógica para cálculo relacionado a horários.",
       "Aplicação com fluxo de cadastro e cálculo de uso.",
@@ -76,6 +77,7 @@ const translations = {
     conceptsKeywords: ["OOP", "Algorithms", "ITIL", "Monitoring"],
     projectsTitle: "Projects",
     projectDescriptions: [
+      "High-end real estate platform for Brasília-DF featuring WCAG 2.1 accessibility, filters and carousel.",
       "Simple program for input and value calculations.",
       "Logic exercise for time-related calculations.",
       "Application with registration flow and usage calculation.",
@@ -115,6 +117,7 @@ const translations = {
     conceptsKeywords: ["POO", "Algoritmos", "ITIL", "Monitoreo"],
     projectsTitle: "Proyectos",
     projectDescriptions: [
+      "Plataforma inmobiliaria de alto nivel para Brasilia-DF con accesibilidad WCAG 2.1, filtros y carrusel.",
       "Programa sencillo para entrada y cálculo de valores.",
       "Ejercicio de lógica para cálculos relacionados con horarios.",
       "Aplicación con flujo de registro y cálculo de uso.",
@@ -154,6 +157,7 @@ const translations = {
     conceptsKeywords: ["POO", "Algorithmes", "ITIL", "Surveillance"],
     projectsTitle: "Projets",
     projectDescriptions: [
+      "Plateforme immobilière haut de gamme pour Brasília-DF avec accessibilité WCAG 2.1, filtres et carrousel.",
       "Programme simple de saisie et de calcul de valeurs.",
       "Exercice de logique pour des calculs liés aux horaires.",
       "Application avec flux d'inscription et calcul d'utilisation.",
@@ -193,6 +197,7 @@ const translations = {
     conceptsKeywords: ["OOP", "Algorithmen", "ITIL", "Überwachung"],
     projectsTitle: "Projekte",
     projectDescriptions: [
+      "Exklusive Immobilienplattform für Brasília-DF mit WCAG-2.1-Barrierefreiheit, Filtern und Karussell.",
       "Einfaches Programm zur Eingabe und Berechnung von Werten.",
       "Logikübung für zeitbezogene Berechnungen.",
       "Anwendung mit Registrierungsablauf und Nutzungsberechnung.",
@@ -232,6 +237,7 @@ const translations = {
     conceptsKeywords: ["OOP", "Algoritmi", "ITIL", "Monitoraggio"],
     projectsTitle: "Progetti",
     projectDescriptions: [
+      "Piattaforma immobiliare di alto livello per Brasília-DF con accessibilità WCAG 2.1, filtri e carosello.",
       "Programma semplice per l'inserimento e il calcolo di valori.",
       "Esercizio di logica per calcoli relativi agli orari.",
       "Applicazione con flusso di registrazione e calcolo dell'utilizzo.",
